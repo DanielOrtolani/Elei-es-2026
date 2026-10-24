@@ -1,0 +1,28 @@
+uf,estado,regiao,teve_2t_gov,abst_1t,delta_projetado,abst_2t_projetada,abst_2t_cenario_oposto,impacto_governador
+RO,Rondônia,Norte,Não,21.71,4.2,25.91,25.2,0.71
+MS,Mato Grosso do Sul,Centro-Oeste,Não,23.87,0.98,24.85,24.13,0.71
+RJ,Rio de Janeiro,Sudeste,Não,23.32,0.82,24.14,23.42,0.71
+AC,Acre,Norte,Sim,20.43,3.61,24.04,24.75,-0.71
+AM,Amazonas,Norte,Sim,20.16,3.63,23.79,24.5,-0.71
+MG,Minas Gerais,Sudeste,Não,22.79,0.86,23.65,22.94,0.71
+PA,Pará,Norte,Não,19.11,4.44,23.55,22.83,0.71
+SP,São Paulo,Sudeste,Não,22.54,0.89,23.43,22.71,0.71
+MT,Mato Grosso,Centro-Oeste,Não,22.2,1.13,23.33,22.61,0.71
+GO,Goiás,Centro-Oeste,Não,21.83,1.16,22.99,22.28,0.71
+TO,Tocantins,Norte,Sim,18.34,3.79,22.13,22.84,-0.71
+AP,Amapá,Norte,Não,17.41,4.59,22.0,21.29,0.71
+RS,Rio Grande do Sul,Sul,Não,21.35,0.48,21.83,21.12,0.71
+RR,Roraima,Norte,Não,17.12,4.61,21.73,21.02,0.71
+AL,Alagoas,Nordeste,Não,20.61,1.08,21.69,20.98,0.71
+ES,Espírito Santo,Sudeste,Sim,21.37,0.28,21.65,22.36,-0.71
+PR,Paraná,Sul,Não,20.57,0.55,21.12,20.41,0.71
+BA,Bahia,Nordeste,Não,19.97,1.14,21.11,20.4,0.71
+MA,Maranhão,Nordeste,Não,19.74,1.16,20.9,20.19,0.71
+SC,Santa Catarina,Sul,Não,18.95,0.69,19.64,18.93,0.71
+DF,Distrito Federal,Centro-Oeste,Sim,18.9,0.71,19.61,20.32,-0.71
+PE,Pernambuco,Nordeste,Não,18.16,1.3,19.46,18.75,0.71
+RN,Rio Grande do Norte,Nordeste,Sim,18.38,0.57,18.95,19.66,-0.71
+PB,Paraíba,Nordeste,Não,17.38,1.37,18.75,18.04,0.71
+SE,Sergipe,Nordeste,Não,17.3,1.38,18.68,17.97,0.71
+PI,Piauí,Nordeste,Não,17.16,1.39,18.55,17.84,0.71
+CE,Ceará,Nordeste,Não,15.52,1.54,17.06,16.34,0.71

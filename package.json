@@ -1,0 +1,23 @@
+{
+  "name": "webapp_liquid_glass",
+  "version": "1.0.0",
+  "description": "Inteligência Eleitoral 2026 & Backtest 2022 - Apple Liquid Glass Web App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test_integration.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1"
+  },
+  "keywords": [
+    "liquid-glass",
+    "apple-hig",
+    "elections",
+    "random-forest",
+    "backtest"
+  ],
+  "author": "Equipe de Inteligência Eleitoral",
+  "license": "MIT"
+}

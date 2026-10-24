@@ -1,0 +1,28 @@
+uf,estado,regiao,rf_shap_coef,rf_importance_pct,historico_delta_medio,ols_fe_coef
+AC,Acre,Norte,3.009,22.18,6.32,0.0
+AP,Amapá,Norte,2.644,19.32,5.98,-0.202
+RR,Roraima,Norte,1.144,6.95,4.72,-1.458
+TO,Tocantins,Norte,0.773,4.91,3.94,-2.518
+PA,Pará,Norte,0.215,1.11,2.96,-3.215
+MA,Maranhão,Nordeste,0.082,0.44,2.62,-3.842
+RO,Rondônia,Norte,0.014,0.05,1.89,-4.147
+ES,Espírito Santo,Sudeste,0.004,0.01,1.41,-4.907
+AM,Amazonas,Norte,0.004,0.04,2.3,-3.733
+PI,Piauí,Nordeste,0.003,0.01,1.85,-4.612
+AL,Alagoas,Nordeste,0.0,0.0,1.19,-5.133
+SE,Sergipe,Nordeste,0.0,0.0,0.91,-5.265
+RS,Rio Grande do Sul,Sul,0.0,0.0,0.55,-5.487
+MT,Mato Grosso,Centro-Oeste,0.0,0.0,1.12,-5.345
+GO,Goiás,Centro-Oeste,0.0,0.0,1.05,-5.273
+CE,Ceará,Nordeste,0.0,0.0,0.89,-5.427
+MS,Mato Grosso do Sul,Centro-Oeste,0.0,0.0,1.48,-4.56
+RJ,Rio de Janeiro,Sudeste,-0.004,0.02,0.74,-5.438
+RN,Rio Grande do Norte,Nordeste,-0.006,0.06,0.38,-5.802
+PE,Pernambuco,Nordeste,-0.007,0.03,0.27,-6.047
+PR,Paraná,Sul,-0.008,0.04,0.34,-6.118
+SC,Santa Catarina,Sul,-0.009,0.05,0.34,-5.842
+DF,Distrito Federal,Centro-Oeste,-0.014,0.08,0.12,-6.055
+PB,Paraíba,Nordeste,-0.015,0.07,0.28,-5.902
+MG,Minas Gerais,Sudeste,-0.023,0.12,0.27,-6.053
+BA,Bahia,Nordeste,-0.031,0.14,0.37,-5.953
+SP,São Paulo,Sudeste,-0.071,0.32,0.23,-5.945

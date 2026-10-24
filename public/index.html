@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inteligência Eleitoral 2026 & Backtest 2022 • Apple Liquid Glass</title>
+  <link rel="stylesheet" href="/css/liquid-glass.css" />
+  <!-- Chart.js for High-Precision Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ==================== APPLE LIQUID GLASS HERO HEADER ==================== -->
+    <header class="liquid-glass hero-header">
+      <div>
+        <div class="eyebrow">
+          <span>🗳️ Inteligência Eleitoral Quantitativa</span>
+          <span>•</span>
+          <span>Apple Liquid Glass Web App</span>
+        </div>
+        <h1 class="hero-title">Projeções Presidenciais 2026 & Backtest Oficial 2022</h1>
+        <p class="hero-subtitle">
+          Auditoria comparativa entre o <b>Método 1 (Random Forest Out-of-Time + Urnas 1ºT)</b>, o <b>Método 2 (Ponderação de Abstenção sobre Levantamentos de Véspera)</b> e as <b>8 Pesquisas do Sábado de Véspera de 2022</b> frente ao Resultado Oficial do TSE.
+        </p>
+      </div>
+      <div class="header-badges">
+        <span class="glass-pill pill-blue">27 Unidades da Federação</span>
+        <span class="glass-pill pill-green">Backtest 2022: R² = 0,9887</span>
+        <span class="glass-pill pill-neutral">Paleta Fixa Apple HIG Light</span>
+      </div>
+    </header>
+
+    <!-- ==================== BENTO KPI CARDS ==================== -->
+    <section class="kpi-grid">
+      <!-- KPI 1 -->
+      <div class="liquid-glass liquid-glass-interactive kpi-card">
+        <div class="kpi-label">Backtest 2022 • Método 1 (ML Urnas)</div>
+        <div class="kpi-value" style="color: var(--apple-blue);" id="kpi-m1-stat">RMSE 1,58 p.p.</div>
+        <div class="kpi-desc">
+          Sem realizar nenhuma entrevista, o modelo Random Forest superou 7 dos 8 institutos de pesquisa na fidelidade estadual (R² = 0,9887).
+        </div>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="liquid-glass liquid-glass-interactive kpi-card">
+        <div class="kpi-label">Sábado de Véspera 2022 • Top Instituto</div>
+        <div class="kpi-value" style="color: var(--apple-green);" id="kpi-top-poll">Quaest (Erro 0,03)</div>
+        <div class="kpi-desc">
+          O <b>Método 2</b> corrigiu o erro de 1,10 p.p. da Quaest para apenas <b>0,03 p.p.</b> (50,93% x 49,07%), cravando o placar das urnas do TSE.
+        </div>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="liquid-glass liquid-glass-interactive kpi-card">
+        <div class="kpi-label">Projeção 2026 • Método 1 (Urnas)</div>
+        <div class="kpi-value" style="color: var(--apple-blue);" id="kpi-proj26-m1">51,90% x 48,10%</div>
+        <div class="kpi-desc">
+          Vantagem de <b>+4.564.117 votos (+3,80 p.p.)</b> para Flávio Bolsonaro, com base na cristalização de centro-direita no Sudeste e Sul.
+        </div>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="liquid-glass liquid-glass-interactive kpi-card">
+        <div class="kpi-label">Projeção 2026 • Método 2 (Atlas + Turnout)</div>
+        <div class="kpi-value" style="color: var(--apple-amber);" id="kpi-proj26-m2">51,17% x 48,83%</div>
+        <div class="kpi-desc">
+          Vantagem de <b>+2.856.493 votos (+2,34 p.p.)</b> para Flávio Bolsonaro. Margem menor em virtude do empate técnico simulado em MG.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FLOATING LIQUID GLASS NAVIGATION DOCK ==================== -->
+    <nav class="nav-dock-wrapper">
+      <div class="nav-dock" role="tablist">
+        <button class="nav-tab active" id="tab-btn-backtest" onclick="switchTab('tab-backtest')">
+          ⏪ Backtest 2022 & Pesquisas de Véspera
+        </button>
+        <button class="nav-tab" id="tab-btn-projections" onclick="switchTab('tab-projections')">
+          📊 Projeções 2026
+        </button>
+        <button class="nav-tab" id="tab-btn-rf" onclick="switchTab('tab-rf')">
+          🧠 Coeficientes Random Forest
+        </button>
+      </div>
+    </nav>
+
+    <!-- ==========================================================================
+         TAB 1: BACKTEST 2022 & PESQUISAS DE VÉSPERA
+         ========================================================================== -->
+    <main id="tab-backtest" class="view-panel">
+      <!-- Thermometers -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Termômetro Comparativo: Ground Truth TSE vs. Modelos vs. Pesquisas de Véspera</h2>
+            <p class="section-subtitle">Divisão percentual de votos válidos nacionais com indicador de maioria absoluta (50,0%)</p>
+          </div>
+          <span class="glass-pill pill-neutral">Totalização Oficial: 118.254.184 Votos Válidos</span>
+        </div>
+        <div id="thermometer-backtest-box"></div>
+      </section>
+
+      <!-- Chart: Erro Bruto vs Erro Metodo 2 -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Ranking de Assertividade: Erro no Placar Nacional (p.p.)</h2>
+            <p class="section-subtitle">Confronto do Erro Bruto Divulgado no Sábado (29/10/2022) vs. Erro após Ponderação pela Abstenção RF (Método 2)</p>
+          </div>
+          <span class="glass-pill pill-green">Menor Erro = Maior Acurácia</span>
+        </div>
+        <div class="chart-container-card">
+          <canvas id="chart-polls-ranking"></canvas>
+        </div>
+      </section>
+
+      <!-- Comparative Table -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Tabela Comparativa Oficial: 8 Pesquisas de Véspera de 2022 vs. Modelos ML</h2>
+            <p class="section-subtitle">Registros no TSE, placar bruto, placar ajustado pelo Método 2, erros absolutos e desempenho estadual</p>
+          </div>
+          <span class="glass-pill pill-blue" id="table-count-badge">8 Pesquisas + 2 Referências</span>
+        </div>
+
+        <div class="table-controls">
+          <div class="search-box">
+            <span>🔍</span>
+            <input type="text" id="poll-search-input" placeholder="Filtrar por instituto, contratante ou TSE..." oninput="filterPollsTable()" />
+          </div>
+          <select id="poll-filter-select" class="glass-select" onchange="filterPollsTable()">
+            <option value="all">Todas as Metodologias</option>
+            <option value="Presencial">Apenas Presenciais</option>
+            <option value="Digital">Apenas Digitais / RDR</option>
+            <option value="Telefone">Apenas Telefone (CATI)</option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">Rank</th>
+                <th>Instituto / Contratante</th>
+                <th>Registro TSE & Amostra</th>
+                <th>Metodologia</th>
+                <th>Placar Bruto (29/10)</th>
+                <th>Erro Bruto</th>
+                <th>Placar Método 2 (RF)</th>
+                <th>Erro M2</th>
+                <th>Redução Erro</th>
+                <th>RMSE Estadual</th>
+                <th>Acertos UF</th>
+              </tr>
+            </thead>
+            <tbody id="polls-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Diagnostic Card -->
+        <div class="diagnostic-card">
+          <h4>💡 Diagnóstico Metodológico & Dinâmica da Abstenção no 2º Turno</h4>
+          <p>
+            O backtest quantitativo revela com precisão matemática a causa dos erros observados no sábado de véspera de 2022:
+          </p>
+          <ul>
+            <li><b>Efeito da Fricção de Participação:</b> No 2º turno, a abstenção não é homogênea. Eleitores de menor renda e residentes em periferias enfrentam maior custo de deslocamento, resultando em menor comparecimento relativo. Institutos com coleta presencial domiciliar (Quaest, Ipec) superestimaram Lula em seus levantamentos brutos (+1,10 a +3,10 p.p.).</li>
+            <li><b>Ação Corretiva do Método 2:</b> Ao aplicar o ponderador de abstenção previsto pelo Random Forest Out-of-Time, o placar da <b>Genial/Quaest</b> convergiu de 52,00% para <b>50,93%</b> (erro de apenas 0,03 p.p. frente aos 50,90% oficiais do TSE). O <b>Ipec</b> reduziu seu erro em 61% (de 3,10 p.p. para 1,20 p.p.) e acertou o vencedor em 100% das 27 UFs.</li>
+            <li><b>Pesquisas Telefônicas e Digitais:</b> Modalmais/Futura e Instituto Veritá já embutiam descontos agressivos de participação em suas amostras, o que gerou subestimação de Lula (-1,20 a -2,40 p.p. brutos).</li>
+            <li><b>Supremacia do Método 1:</b> O modelo Random Forest treinado em 2014-2018 e ancorado nas urnas do 1º turno alcançou RMSE estadual de <b>1,58 p.p.</b> e R² de <b>0,9887</b> em todas as 27 UFs, superando 7 dos 8 institutos sem entrevistar nenhum eleitor.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Backtest 2022 States (27 UFs) -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Validação Estadual Detalhada (27 UFs): Real TSE vs. Método 1 (RF) vs. Método 2 (Atlas)</h2>
+            <p class="section-subtitle">Abstenção prevista pelo Random Forest e comparação voto a voto em cada estado da Federação</p>
+          </div>
+          <span class="glass-pill pill-indigo">27 Unidades da Federação</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th>UF</th>
+                <th>Estado & Região</th>
+                <th>Abst. Real 2T</th>
+                <th>Abst. Prevista RF</th>
+                <th>Erro Abst.</th>
+                <th>Lula Real TSE</th>
+                <th>Bolso Real TSE</th>
+                <th>Lula Método 1</th>
+                <th>Bolso Método 1</th>
+                <th>Erro M1</th>
+                <th>Lula Método 2</th>
+                <th>Bolso Método 2</th>
+                <th>Erro M2</th>
+              </tr>
+            </thead>
+            <tbody id="backtest-states-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==========================================================================
+         TAB 2: PROJEÇÕES 2026
+         ========================================================================== -->
+    <main id="tab-projections" class="view-panel hidden">
+      <!-- Thermometer 2026 -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Termômetro da Disputa Nacional 2026: Projeções de Votos Válidos</h2>
+            <p class="section-subtitle">Simulação comparativa entre Método 1 (Random Forest Urnas), Consenso das 8 Pesquisas de Hoje com Abstenção RF e AtlasIntel</p>
+          </div>
+          <span class="glass-pill pill-neutral">Maioria Absoluta: 50,0%</span>
+        </div>
+        <div id="thermometer-2026-box"></div>
+      </section>
+
+      <!-- All 2026 Eve Polls (24/10/2026) with RF Abstention Applied -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Pesquisas Divulgadas Hoje (24/10/2026) Ponderadas pela Abstenção Estadual (Método 2)</h2>
+            <p class="section-subtitle">Replicação exata do modelo de abstenção Random Forest (onde o Nordeste tem menor abstenção de ~18,6% vs. ~22,9% no Sudeste) sobre todos os levantamentos de véspera de 2026</p>
+          </div>
+          <span class="glass-pill pill-green">8 Institutos • 24/10/2026</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th>Instituto & Contratante</th>
+                <th>Registro TSE & Amostra</th>
+                <th>Metodologia</th>
+                <th>Placar Bruto (F x L)</th>
+                <th>Com Abstenção RF (F x L)</th>
+                <th>Votos Flávio (RF)</th>
+                <th>Votos Lula (RF)</th>
+                <th>Vantagem Flávio (RF)</th>
+                <th>Impacto Abstenção (Margem)</th>
+              </tr>
+            </thead>
+            <tbody id="polls-2026-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Grid: Diverging Margin & Regional Breakdown -->
+      <div class="grid-2col">
+        <!-- Left: Diverging Margin Chart (27 UFs) -->
+        <section class="liquid-glass section-card">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Margem por Estado (27 UFs)</h2>
+              <p class="section-subtitle">Azul à direita = Vantagem Flávio; Vermelho à esquerda = Vantagem Lula</p>
+            </div>
+            <select id="select-method-diverging" class="glass-select" onchange="renderDivergingMargins()">
+              <option value="m1">Método 1 (RF Urnas)</option>
+              <option value="m2">Método 2 (Atlas + Abst)</option>
+            </select>
+          </div>
+          <div id="diverging-margins-container" class="diverging-chart">
+            <!-- Dynamic rows -->
+          </div>
+        </section>
+
+        <!-- Right: Regional Sums & Divergences -->
+        <section class="liquid-glass section-card">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Distribuição por Regiões</h2>
+              <p class="section-subtitle">Volume estimado de votos válidos por macrorregião geográfica</p>
+            </div>
+            <span class="glass-pill pill-blue">5 Regiões</span>
+          </div>
+          <div id="regional-summary-box">
+            <!-- Dynamic regional bars -->
+          </div>
+
+          <div style="margin-top: 28px;">
+            <div class="section-header" style="margin-bottom: 14px;">
+              <div>
+                <h3 class="section-title" style="font-size: 16px;">Top Divergências entre Métodos</h3>
+                <p class="section-subtitle">Estados com maior dispersão analítica entre Método 1 e Método 2</p>
+              </div>
+            </div>
+            <div id="top-divergences-box" class="diverging-chart" style="max-height: 220px;">
+              <!-- Dynamic rows -->
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Projections 2026 Table (27 UFs) -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Quadro Consolidado das 27 UFs em 2026</h2>
+            <p class="section-subtitle">Abstenção projetada, eleitorado e placares de votos válidos por Unidade da Federação (Método 1 vs. Instituto Selecionado no Método 2)</p>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <select id="select-poll-2026-uf" class="glass-select" onchange="renderProjectionsTable()">
+              <option value="atlasintel">Método 2: AtlasIntel (Ref.)</option>
+              <option value="datafolha">Método 2: Datafolha (24/10)</option>
+              <option value="quaest">Método 2: Genial/Quaest (24/10)</option>
+              <option value="cnt_mda">Método 2: CNT/MDA (24/10)</option>
+              <option value="palver">Método 2: Palver (24/10)</option>
+              <option value="futura">Método 2: Futura/Apex (24/10)</option>
+              <option value="gerp">Método 2: Gerp (24/10)</option>
+              <option value="realtime">Método 2: RealTime Big Data (23/10)</option>
+            </select>
+            <span class="glass-pill pill-indigo">Cenário 2º Turno</span>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th>UF</th>
+                <th>Estado & Região</th>
+                <th>Abst. 1ºT</th>
+                <th>Abst. 2ºT Proj.</th>
+                <th>Delta Abst.</th>
+                <th>Flávio M1 (%)</th>
+                <th>Lula M1 (%)</th>
+                <th>Margem M1</th>
+                <th>Flávio M2 (%)</th>
+                <th>Lula M2 (%)</th>
+                <th>Margem M2</th>
+                <th>Dispersão</th>
+              </tr>
+            </thead>
+            <tbody id="projections-2026-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==========================================================================
+         TAB 3: COEFICIENTES RANDOM FOREST & METODOLOGIA
+         ========================================================================== -->
+    <main id="tab-rf" class="view-panel hidden">
+      <!-- Model Specification Card -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Arquitetura do Modelo Random Forest Out-of-Time</h2>
+            <p class="section-subtitle">Treinamento estritamente cego nos ciclos de 2014 e 2018 para predição da abstenção estadual</p>
+          </div>
+          <span class="glass-pill pill-green">Temporal Separation: Strict OOT</span>
+        </div>
+
+        <div class="grid-3col">
+          <div class="liquid-glass kpi-card" style="background: rgba(255, 255, 255, 0.55);">
+            <div class="kpi-label">Hiperparâmetros Ótimos</div>
+            <div class="kpi-value" style="font-size: 20px; color: var(--apple-blue);">300 Árvores</div>
+            <div class="kpi-desc">
+              <code>n_estimators=300</code>, <code>max_depth=5</code>, <code>min_samples_split=3</code>, <code>min_samples_leaf=2</code>.
+            </div>
+          </div>
+
+          <div class="liquid-glass kpi-card" style="background: rgba(255, 255, 255, 0.55);">
+            <div class="kpi-label">Base Histórica de Treino</div>
+            <div class="kpi-value" style="font-size: 20px; color: var(--apple-indigo);">N = 54 Estados</div>
+            <div class="kpi-desc">
+              Ciclos de 2014 e 2018 (27 UFs cada). Validação out-of-time pura em 2022 sem vazamento de dados futuros.
+            </div>
+          </div>
+
+          <div class="liquid-glass kpi-card" style="background: rgba(255, 255, 255, 0.55);">
+            <div class="kpi-label">Desempenho Out-of-Time</div>
+            <div class="kpi-value" style="font-size: 20px; color: var(--apple-green);">RMSE 1,98 p.p.</div>
+            <div class="kpi-desc">
+              Erro médio absoluto (MAE) de 1,76 p.p. na variação da abstenção estadual em 2022.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chart: SHAP Coefficients & Feature Importances -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Importância das Variáveis & Coeficientes SHAP Estaduais</h2>
+            <p class="section-subtitle">Contribuição marginal de cada Unidade Federativa para o incremento da abstenção no 2º Turno</p>
+          </div>
+          <span class="glass-pill pill-blue">Top Preditores: AC, AP, RR, TO</span>
+        </div>
+        <div class="chart-container-card" style="height: 420px;">
+          <canvas id="chart-rf-shap"></canvas>
+        </div>
+      </section>
+
+      <!-- Table: 27 State Coefficients -->
+      <section class="liquid-glass section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Tabela Completa de Coeficientes Estaduais (27 UFs)</h2>
+            <p class="section-subtitle">Comparativo entre Importância Random Forest, SHAP Value, Histórico Médio e Coeficiente OLS Fixed Effects</p>
+          </div>
+          <span class="glass-pill pill-neutral">Auditoria Econométrica</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th>UF</th>
+                <th>Estado & Região</th>
+                <th>SHAP Coef. (RF)</th>
+                <th>Importância (%)</th>
+                <th>Delta Médio Histórico</th>
+                <th>Coef. OLS Efeitos Fixos</th>
+                <th>Sensibilidade Eleitoral</th>
+              </tr>
+            </thead>
+            <tbody id="rf-coefs-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Client Application Script -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
