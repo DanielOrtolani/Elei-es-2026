@@ -1,9 +1,7 @@
-instituto,contratante,registro_tse,amostra,margem_erro,data_divulgacao,metodologia,lula_bruto_pct,bolso_bruto_pct,margem_bruta,erro_placar_bruto,erro_margem_bruta,vies_direcional_bruto,lula_m2_pct,bolso_m2_pct,margem_m2,erro_placar_m2,erro_margem_m2,reducao_erro_pp,rmse_estadual_m2,mae_estadual_m2,acertos_vencedor_uf_m2
-Genial/Quaest,Banco Genial,BR-05765/2022,2000,2.0,29/10/2022,Presencial,52.0,48.0,4.0,1.1,2.2,Superestimou Lula,50.93,49.07,1.86,0.03,0.06,1.07,5.25,4.61,25/27 (92.6%)
-CNT/MDA,Confederação Nacional do Transporte (CNT),BR-01820/2022,2002,2.2,29/10/2022,Presencial,51.1,48.9,2.2,0.2,0.4,Superestimou Lula,49.99,50.01,-0.02,0.91,-1.82,-0.71,1.38,1.27,25/27 (92.6%)
-Ipec,TV Globo,BR-05256/2022,4272,2.0,29/10/2022,Presencial,54.0,46.0,8.0,3.1,6.2,Superestimou Lula,52.1,47.9,4.2,1.2,2.4,1.9,1.1,0.88,27/27 (100.0%)
-Datafolha,Folha de S.Paulo / TV Globo,BR-08297/2022,8308,2.0,29/10/2022,Presencial,52.0,48.0,4.0,1.1,2.2,Superestimou Lula,52.53,47.47,5.06,1.63,3.26,-0.53,1.78,1.62,26/27 (96.3%)
-Paraná Pesquisas,Recursos próprios / BGC Liquidez,BR-09573/2022,2400,2.0,29/10/2022,Presencial,50.4,49.6,0.8,0.5,-1.0,Superestimou Bolsonaro,49.18,50.82,-1.64,1.72,-3.44,-1.22,2.82,2.53,24/27 (88.9%)
-AtlasIntel,Recursos próprios,BR-04838/2022,7500,1.0,29/10/2022,Digital (RDR),53.4,46.6,6.8,2.5,5.0,Superestimou Lula,53.21,46.79,6.42,2.31,4.62,0.19,2.02,1.91,26/27 (96.3%)
-Modalmais/Futura,Banco Modal (Modalmais),BR-07903/2022,2000,2.2,28/10/2022,Telefone (CATI),49.7,50.3,-0.6,1.2,-2.4,Superestimou Bolsonaro,48.29,51.71,-3.42,2.61,-5.22,-1.41,3.97,3.71,23/27 (85.2%)
-Instituto Veritá,Recursos próprios,BR-04920/2022,30180,2.0,28/10/2022,Eletrônica/Digital,48.5,51.5,-3.0,2.4,-4.8,Superestimou Bolsonaro,46.97,53.03,-6.06,3.93,-7.86,-1.53,4.18,4.04,24/27 (88.9%)
+instituto,contratante,registro_tse,amostra,margem_erro,data_divulgacao,metodologia,lula_bruto_pct,bolso_bruto_pct,margem_bruta,erro_placar_bruto,erro_margem_bruta,vies_direcional_bruto,lula_m2_pct,bolso_m2_pct,margem_m2,erro_placar_m2,erro_margem_m2,reducao_erro_pp,rmse_estadual_m2,mae_estadual_m2,acertos_vencedor_uf_m2,ufs_com_2t_gov,ufs_sem_2t_gov,efeito_2t_gov_lula_pp,efeito_2t_gov_lula_votos
+Genial/Quaest,Banco Genial,BR-05765/2022,2000,2.0,29/10/2022,Presencial,52.0,48.0,4.0,1.1,2.2,Superestimou Lula,50.93,49.07,1.86,0.03,0.06,1.07,5.25,4.61,25/27 (92.6%),12,15,0.16,192267
+CNT/MDA,Confederação Nacional do Transporte (CNT),BR-01820/2022,2002,2.2,29/10/2022,Presencial,51.1,48.9,2.2,0.2,0.4,Superestimou Lula,49.99,50.01,-0.02,0.91,-1.82,-0.71,1.38,1.27,25/27 (92.6%),12,15,0.16,192267
+Ipec,TV Globo,BR-05256/2022,4272,2.0,29/10/2022,Presencial,54.0,46.0,8.0,3.1,6.2,Superestimou Lula,52.1,47.9,4.2,1.2,2.4,1.9,1.1,0.88,27/27 (100.0%),12,15,0.16,192267
+Datafolha,Folha de S.Paulo / TV Globo,BR-08297/2022,8308,2.0,29/10/2022,Presencial,52.0,48.0,4.0,1.1,2.2,Superestimou Lula,52.53,47.47,5.06,1.63,3.26,-0.53,1.78,1.62,26/27 (96.3%),12,15,0.16,192267
+Paraná Pesquisas,Recursos próprios / BGC Liquidez,BR-09573/2022,2400,2.0,29/10/2022,Presencial,50.4,49.6,0.8,0.5,-1.0,Superestimou Bolsonaro,49.18,50.82,-1.64,1.72,-3.44,-1.22,2.82,2.53,24/27 (88.9%),12,15,0.16,192267
+AtlasIntel,Recursos próprios,BR-04838/2022,7500,1.0,29/10/2022,Digital (RDR),53.4,46.6,6.8,2.5,5.0,Superestimou Lula,53.21,46.79,6.42,2.31,4.62,0.19,2.02,1.91,26/27 (96.3%),12,15,0.16,192267
