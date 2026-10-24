@@ -420,6 +420,11 @@ function renderPollsTable() {
           ) : '—'}
         </td>
         <td class="mono">
+          <span class="glass-pill pill-green" style="font-size: 11px;">
+            +${fmtInt(r.efeito_2t_gov_lula_votos || 192267)} Lula (+${fmtDec(r.efeito_2t_gov_lula_pp || 0.16, 2)} p.p.)
+          </span>
+        </td>
+        <td class="mono">
           ${isTse ? '0,00' : (r.rmse_estadual_m2 ? `${fmtDec(r.rmse_estadual_m2)} p.p.` : '—')}
         </td>
         <td class="mono">
@@ -514,17 +519,17 @@ function renderProjectionsThermometers() {
 
     <div class="thermometer-row">
       <div class="thermometer-meta">
-        <span style="color: var(--apple-green); font-weight: 700;">2. Consenso (Média dos 8 Institutos de 24/10/2026) + Abstenção RF</span>
+        <span style="color: var(--apple-green); font-weight: 700;">2. Consenso (Média dos 5 Institutos Elegíveis de 24/10) + Coef. UF & 2ºT Gov</span>
         <span class="mono">
-          Flávio <b>51,03%</b> (62.194.536) vs. Lula <b>48,97%</b> (59.678.494) • Vantagem: <b>+2,07 p.p.</b> (+2.516.042 votos)
+          Flávio <b>50,91%</b> (62.045.321) vs. Lula <b>49,09%</b> (59.827.710) • Vantagem: <b>+1,82 p.p.</b> (+2.217.611 votos)
         </span>
       </div>
       <div class="thermometer-track">
-        <div class="thermometer-segment seg-blue" style="width: 51.03%;">
-          Flávio Bolsonaro 51,03%
+        <div class="thermometer-segment seg-blue" style="width: 50.91%;">
+          Flávio Bolsonaro 50,91%
         </div>
-        <div class="thermometer-segment seg-red" style="width: 48.97%;">
-          Lula 48,97%
+        <div class="thermometer-segment seg-red" style="width: 49.09%;">
+          Lula 49,09%
         </div>
         <div class="majority-line" title="50% Maioria Absoluta"></div>
       </div>
@@ -532,17 +537,17 @@ function renderProjectionsThermometers() {
 
     <div class="thermometer-row">
       <div class="thermometer-meta">
-        <span style="color: var(--apple-indigo); font-weight: 700;">3. Datafolha / Quaest (24/10/2026) Ponderadas pela Abstenção RF</span>
+        <span style="color: var(--apple-indigo); font-weight: 700;">3. Datafolha / Quaest (24/10/2026) c/ Coef. Estadual & 2ºT Gov</span>
         <span class="mono">
-          Flávio <b>50,83%</b> (61.949.333) vs. Lula <b>49,17%</b> (59.923.698) • Vantagem: <b>+1,66 p.p.</b> (+2.025.635 votos)
+          Flávio <b>50,89%</b> (62.015.742) vs. Lula <b>49,11%</b> (59.857.289) • Vantagem: <b>+1,78 p.p.</b> (+2.158.453 votos)
         </span>
       </div>
       <div class="thermometer-track">
-        <div class="thermometer-segment seg-blue" style="width: 50.83%;">
-          Flávio Bolsonaro 50,83%
+        <div class="thermometer-segment seg-blue" style="width: 50.89%;">
+          Flávio Bolsonaro 50,89%
         </div>
-        <div class="thermometer-segment seg-red" style="width: 49.17%;">
-          Lula 49,17%
+        <div class="thermometer-segment seg-red" style="width: 49.11%;">
+          Lula 49,11%
         </div>
         <div class="majority-line" title="50% Maioria Absoluta"></div>
       </div>
@@ -550,17 +555,17 @@ function renderProjectionsThermometers() {
 
     <div class="thermometer-row">
       <div class="thermometer-meta">
-        <span style="color: var(--apple-amber); font-weight: 700;">4. AtlasIntel (Referência) Ponderada pela Abstenção RF</span>
+        <span style="color: var(--apple-amber); font-weight: 700;">4. AtlasIntel (Referência) c/ Coef. Estadual & 2ºT Gov</span>
         <span class="mono">
-          Flávio <b>${fmtDec(m2.flavio_pct)}%</b> (${fmtInt(m2.flavio_votes)}) vs. Lula <b>${fmtDec(m2.lula_pct)}%</b> (${fmtInt(m2.lula_votes)}) • Vantagem: <b>+${fmtDec(m2.vantagem_pp)} p.p.</b> (+${fmtInt(m2.vantagem_votos)} votos)
+          Flávio <b>51,23%</b> (62.431.173) vs. Lula <b>48,77%</b> (59.441.858) • Vantagem: <b>+2,46 p.p.</b> (+2.989.315 votos)
         </span>
       </div>
       <div class="thermometer-track">
-        <div class="thermometer-segment seg-blue" style="width: ${m2.flavio_pct}%;">
-          Flávio Bolsonaro ${fmtDec(m2.flavio_pct)}%
+        <div class="thermometer-segment seg-blue" style="width: 51.23%;">
+          Flávio Bolsonaro 51,23%
         </div>
-        <div class="thermometer-segment seg-red" style="width: ${m2.lula_pct}%;">
-          Lula ${fmtDec(m2.lula_pct)}%
+        <div class="thermometer-segment seg-red" style="width: 48.77%;">
+          Lula 48,77%
         </div>
         <div class="majority-line" title="50% Maioria Absoluta"></div>
       </div>
@@ -598,28 +603,32 @@ function renderPolls2026Table() {
         <td class="mono">
           <span class="glass-pill pill-blue">+${fmtInt(p.vantagem_flavio_abst_rf_votos)} (+${fmtDec(p.vantagem_flavio_abst_rf_pp, 2)} p.p.)</span>
         </td>
-        <td class="mono" style="color: var(--apple-red);">
-          ${fmtInt(p.impacto_abst_margem_votos)} votos (${fmtSign(p.impacto_abst_flavio_pp, 2)} p.p. F)
+        <td class="mono">
+          <span class="glass-pill pill-indigo">+${fmtInt(p.saldo_flavio_6ufs_com_2t_gov || 320941)} Flávio</span>
+        </td>
+        <td class="mono">
+          <span class="glass-pill pill-green">+${fmtInt(p.efeito_2t_gov_flavio_votos || 191030)} Flávio (+${fmtDec(p.efeito_2t_gov_flavio_pp || 0.16, 2)} p.p.)</span>
         </td>
       </tr>
     `;
   });
 
-  // Add Consensus Average Row
+  // Add Consensus Average Row (5 Eligible Polls)
   rowsHtml.push(`
     <tr style="background: rgba(24, 154, 56, 0.08); font-weight: 700;">
       <td>
-        <div style="font-weight: 800; color: var(--apple-green);">MÉDIA / CONSENSO (8 Institutos)</div>
-        <div style="font-size: 11.5px; color: var(--text-secondary);">Agregado Ponderado Véspera 24/10/2026</div>
+        <div style="font-weight: 800; color: var(--apple-green);">MÉDIA / CONSENSO (5 Institutos Elegíveis)</div>
+        <div style="font-size: 11.5px; color: var(--text-secondary);">Apenas pesquisas com recorte por estado e efeito 2ºT Gov</div>
       </td>
-      <td class="mono"><b>CONSENSO 24/10</b><div style="font-size: 11.5px; color: var(--text-tertiary);">N = 26.608</div></td>
-      <td><span class="glass-pill pill-green" style="font-size: 11px;">Ensemble 8 Pesquisas</span></td>
-      <td class="mono"><b style="color: var(--apple-blue);">51,17%</b> x <b style="color: var(--apple-red);">48,83%</b></td>
-      <td class="mono"><b style="color: var(--apple-blue);">51,03%</b> x <b style="color: var(--apple-red);">48,97%</b></td>
-      <td class="mono" style="color: var(--apple-blue);">62.194.536</td>
-      <td class="mono" style="color: var(--apple-red);">59.678.494</td>
-      <td class="mono"><span class="glass-pill pill-green">+2.516.042 (+2,07 p.p.)</span></td>
-      <td class="mono" style="color: var(--apple-red);">-426.467 votos (-0,17 p.p. F)</td>
+      <td class="mono"><b>CONSENSO 24/10</b><div style="font-size: 11.5px; color: var(--text-tertiary);">N = 19.608</div></td>
+      <td><span class="glass-pill pill-green" style="font-size: 11px;">Ensemble 5 Elegíveis</span></td>
+      <td class="mono"><b style="color: var(--apple-blue);">50,98%</b> x <b style="color: var(--apple-red);">49,02%</b></td>
+      <td class="mono"><b style="color: var(--apple-blue);">50,91%</b> x <b style="color: var(--apple-red);">49,09%</b></td>
+      <td class="mono" style="color: var(--apple-blue);">62.045.321</td>
+      <td class="mono" style="color: var(--apple-red);">59.827.710</td>
+      <td class="mono"><span class="glass-pill pill-green">+2.217.611 (+1,82 p.p.)</span></td>
+      <td class="mono"><span class="glass-pill pill-indigo">+320.941 Flávio</span></td>
+      <td class="mono"><span class="glass-pill pill-green">+191.030 Flávio (+0,16 p.p.)</span></td>
     </tr>
   `);
 
@@ -745,6 +754,11 @@ function renderProjectionsTable() {
     const margemM2 = Number((pctFlavioM2 - pctLulaM2).toFixed(2));
     const diffMargem = Number((Number(s.margem_m1) - margemM2).toFixed(2));
 
+    const hasGov2t = s.teve_2t_gov === 'Sim';
+    const govBadge = hasGov2t
+      ? `<span class="glass-pill pill-green" style="font-size: 11px;">Sim (-0,71 p.p.)</span>`
+      : `<span class="glass-pill pill-neutral" style="font-size: 11px;">Não</span>`;
+
     return `
       <tr>
         <td class="mono"><b>${s.uf}</b></td>
@@ -752,6 +766,7 @@ function renderProjectionsTable() {
           <div><b>${s.estado}</b></div>
           <div style="font-size: 11.5px; color: var(--text-tertiary);">${s.regiao}</div>
         </td>
+        <td>${govBadge}</td>
         <td class="mono">${fmtDec(s.abst_1t)}%</td>
         <td class="mono">${fmtDec(s.abst_2t_rf)}%</td>
         <td class="mono">${fmtSign(s.delta_rf)} p.p.</td>

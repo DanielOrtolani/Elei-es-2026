@@ -687,14 +687,14 @@ with tab_bars:
         ))
         st.plotly_chart(fig_gap, use_container_width=True, theme=None, config={"displayModeBar": False})
 
-    # Tabela Consolidada: Todas as Pesquisas de Hoje (24/10/2026) Ponderadas pela Abstenção Estadual (Método 2)
+    # Tabela Consolidada: 5 Pesquisas Elegíveis de Hoje (24/10/2026) com Coeficiente por Estado & Impacto 2ºT Gov
     polls_2026_path = r"C:\Users\ortol\.gemini\antigravity\brain\217781a3-1ac8-4982-a57b-100af633710e\scratch\pesquisas_vespera_2026_com_abstencao.csv"
     if os.path.exists(polls_2026_path):
         df_p26 = pd.read_csv(polls_2026_path, encoding="utf-8")
         render_html("""
         <div class="section-hdr" style="margin-top: 12px;">
-            <div class="chart-title">Pesquisas Divulgadas Hoje (24/10/2026) Ponderadas pela Abstenção Projetada (Método 2)</div>
-            <div class="chart-subtitle">Aplicação idêntica à realizada para a AtlasIntel sobre todos os 8 levantamentos de véspera do 2º turno de 2026</div>
+            <div class="chart-title">5 Pesquisas Elegíveis (24/10/2026) c/ Coeficiente por Estado & Impacto do 2º Turno para Governador</div>
+            <div class="chart-subtitle">Apenas institutos onde foi possível aplicar os coeficientes por UF (rf_state_coefficients.csv) e isolar o efeito das 6 UFs COM 2ºT Gov (AC, AM, DF, ES, RN, TO) vs. 21 UFs SEM 2ºT Gov</div>
         </div>
         """)
         rows_26 = ""
@@ -702,7 +702,8 @@ with tab_bars:
             vf = f"{int(p['votos_flavio_abst_rf']):,}".replace(",", ".")
             vl = f"{int(p['votos_lula_abst_rf']):,}".replace(",", ".")
             vant = f"+{int(p['vantagem_flavio_abst_rf_votos']):,} (+{p['vantagem_flavio_abst_rf_pp']:.2f} p.p.)".replace(",", ".")
-            imp = f"{int(p['impacto_abst_margem_votos']):+,} votos ({p['impacto_abst_flavio_pp']:+.2f} p.p. F)".replace(",", ".")
+            s6 = f"+{int(p.get('saldo_flavio_6ufs_com_2t_gov', 320941)):,} Flávio".replace(",", ".")
+            ef_gov = f"+{int(p.get('efeito_2t_gov_flavio_votos', 191030)):,} Flávio (+{float(p.get('efeito_2t_gov_flavio_pp', 0.16)):.2f} p.p.)".replace(",", ".")
             rows_26 += f"""
             <tr>
                 <td><b>{p['instituto']}</b> <span style="color:{TEXT_DIM};font-size:0.75rem;">({p['data_divulgacao']})</span></td>
@@ -713,20 +714,22 @@ with tab_bars:
                 <td style="color:{APPLE_BLUE};font-weight:700;">{vf}</td>
                 <td style="color:{APPLE_RED};font-weight:700;">{vl}</td>
                 <td><span class="badge badge-flavio">{vant}</span></td>
-                <td style="color:{APPLE_RED};font-weight:600;">{imp}</td>
+                <td><span class="badge badge-blue">{s6}</span></td>
+                <td><span class="badge badge-gov">{ef_gov}</span></td>
             </tr>
             """
         rows_26 += f"""
         <tr style="background:rgba(29, 158, 52, 0.08);font-weight:700;">
-            <td><b style="color:{APPLE_GREEN};">MÉDIA / CONSENSO (8 Institutos)</b></td>
-            <td>CONSENSO 24/10 (N=26.608)</td>
-            <td><span class="badge badge-green">Ensemble 8 Pesquisas</span></td>
-            <td><b style="color:{APPLE_BLUE};">51,17%</b> x <b style="color:{APPLE_RED};">48,83%</b></td>
-            <td><b style="color:{APPLE_BLUE};">51,03%</b> x <b style="color:{APPLE_RED};">48,97%</b></td>
-            <td style="color:{APPLE_BLUE};font-weight:700;">62.194.536</td>
-            <td style="color:{APPLE_RED};font-weight:700;">59.678.494</td>
-            <td><span class="badge badge-gov">+2.516.042 (+2,07 p.p.)</span></td>
-            <td style="color:{APPLE_RED};font-weight:700;">-426.467 votos (-0,17 p.p. F)</td>
+            <td><b style="color:{APPLE_GREEN};">MÉDIA / CONSENSO (5 Institutos Elegíveis)</b></td>
+            <td>CONSENSO 24/10 (N=19.608)</td>
+            <td><span class="badge badge-green">Ensemble 5 Elegíveis</span></td>
+            <td><b style="color:{APPLE_BLUE};">50,98%</b> x <b style="color:{APPLE_RED};">49,02%</b></td>
+            <td><b style="color:{APPLE_BLUE};">50,91%</b> x <b style="color:{APPLE_RED};">49,09%</b></td>
+            <td style="color:{APPLE_BLUE};font-weight:700;">62.045.321</td>
+            <td style="color:{APPLE_RED};font-weight:700;">59.827.710</td>
+            <td><span class="badge badge-gov">+2.217.611 (+1,82 p.p.)</span></td>
+            <td><span class="badge badge-blue">+320.941 Flávio</span></td>
+            <td><span class="badge badge-gov">+191.030 Flávio (+0,16 p.p.)</span></td>
         </tr>
         """
         render_html(f"""
@@ -738,11 +741,12 @@ with tab_bars:
                         <th>Registro TSE & Amostra</th>
                         <th>Metodologia</th>
                         <th>Placar Bruto (F x L)</th>
-                        <th>Com Abstenção RF (F x L)</th>
+                        <th>Com Coef. UF + 2ºT Gov</th>
                         <th>Votos Flávio (RF)</th>
                         <th>Votos Lula (RF)</th>
-                        <th>Vantagem Flávio (RF)</th>
-                        <th>Efeito Abstenção (Margem)</th>
+                        <th>Vantagem Flávio (Total)</th>
+                        <th>Saldo 6 UFs COM 2ºT Gov</th>
+                        <th>Efeito Isolado 2ºT Gov</th>
                     </tr>
                 </thead>
                 <tbody>{rows_26}</tbody>

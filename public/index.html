@@ -119,10 +119,10 @@
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Tabela Comparativa Oficial: 8 Pesquisas de Véspera de 2022 vs. Modelos ML</h2>
-            <p class="section-subtitle">Registros no TSE, placar bruto, placar ajustado pelo Método 2, erros absolutos e desempenho estadual</p>
+            <h2 class="section-title">Tabela Comparativa Oficial: 6 Pesquisas Elegíveis de 2022 (c/ Coeficiente por Estado & Efeito 2ºT Governador)</h2>
+            <p class="section-subtitle">Apenas pesquisas com recortes regionais/estaduais auditáveis em 29/10/2022, isolando o efeito das 12 UFs COM 2ºT para Governador vs. 15 UFs SEM 2ºT</p>
           </div>
-          <span class="glass-pill pill-blue" id="table-count-badge">8 Pesquisas + 2 Referências</span>
+          <span class="glass-pill pill-blue" id="table-count-badge">6 Pesquisas Elegíveis + 2 Referências</span>
         </div>
 
         <div class="table-controls">
@@ -131,10 +131,9 @@
             <input type="text" id="poll-search-input" placeholder="Filtrar por instituto, contratante ou TSE..." oninput="filterPollsTable()" />
           </div>
           <select id="poll-filter-select" class="glass-select" onchange="filterPollsTable()">
-            <option value="all">Todas as Metodologias</option>
+            <option value="all">Todas as Metodologias Elegíveis</option>
             <option value="Presencial">Apenas Presenciais</option>
             <option value="Digital">Apenas Digitais / RDR</option>
-            <option value="Telefone">Apenas Telefone (CATI)</option>
           </select>
         </div>
 
@@ -148,9 +147,10 @@
                 <th>Metodologia</th>
                 <th>Placar Bruto (29/10)</th>
                 <th>Erro Bruto</th>
-                <th>Placar Método 2 (RF)</th>
+                <th>Placar Método 2 (Coef. UF + 2ºT Gov)</th>
                 <th>Erro M2</th>
                 <th>Redução Erro</th>
+                <th>Efeito 2ºT Gov (12 UFs)</th>
                 <th>RMSE Estadual</th>
                 <th>Acertos UF</th>
               </tr>
@@ -233,10 +233,10 @@
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Pesquisas Divulgadas Hoje (24/10/2026) Ponderadas pela Abstenção Estadual (Método 2)</h2>
-            <p class="section-subtitle">Replicação exata do modelo de abstenção Random Forest (onde o Nordeste tem menor abstenção de ~18,6% vs. ~22,9% no Sudeste) sobre todos os levantamentos de véspera de 2026</p>
+            <h2 class="section-title">5 Pesquisas Elegíveis (24/10/2026) c/ Coeficientes de Abstenção por Estado & Impacto do 2ºT para Governador</h2>
+            <p class="section-subtitle">Apenas institutos com recortes estaduais/regionais publicados, aplicando os coeficientes de rf_state_coefficients.csv e isolando o efeito das 6 UFs COM 2ºT para Governador (AC, AM, DF, ES, RN, TO) vs. 21 UFs SEM 2ºT</p>
           </div>
-          <span class="glass-pill pill-green">8 Institutos • 24/10/2026</span>
+          <span class="glass-pill pill-green">5 Institutos Elegíveis • 24/10/2026</span>
         </div>
 
         <div class="table-wrapper">
@@ -247,11 +247,12 @@
                 <th>Registro TSE & Amostra</th>
                 <th>Metodologia</th>
                 <th>Placar Bruto (F x L)</th>
-                <th>Com Abstenção RF (F x L)</th>
+                <th>Com Coef. UF + 2ºT Gov</th>
                 <th>Votos Flávio (RF)</th>
                 <th>Votos Lula (RF)</th>
-                <th>Vantagem Flávio (RF)</th>
-                <th>Impacto Abstenção (Margem)</th>
+                <th>Vantagem Flávio (Total)</th>
+                <th>Saldo 6 UFs COM 2ºT Gov</th>
+                <th>Efeito Isolado 2ºT Gov</th>
               </tr>
             </thead>
             <tbody id="polls-2026-table-body">
@@ -311,8 +312,8 @@
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Quadro Consolidado das 27 UFs em 2026</h2>
-            <p class="section-subtitle">Abstenção projetada, eleitorado e placares de votos válidos por Unidade da Federação (Método 1 vs. Instituto Selecionado no Método 2)</p>
+            <h2 class="section-title">Quadro Consolidado das 27 UFs em 2026 (Impacto 2ºT Governador & Coeficientes Estaduais)</h2>
+            <p class="section-subtitle">Abstenção projetada, presença de 2º turno para Governador (6 UFs) e placares por UF (Método 1 vs. Instituto Elegível Selecionado no Método 2)</p>
           </div>
           <div style="display:flex; gap:10px; align-items:center;">
             <select id="select-poll-2026-uf" class="glass-select" onchange="renderProjectionsTable()">
@@ -320,12 +321,9 @@
               <option value="datafolha">Método 2: Datafolha (24/10)</option>
               <option value="quaest">Método 2: Genial/Quaest (24/10)</option>
               <option value="cnt_mda">Método 2: CNT/MDA (24/10)</option>
-              <option value="palver">Método 2: Palver (24/10)</option>
               <option value="futura">Método 2: Futura/Apex (24/10)</option>
-              <option value="gerp">Método 2: Gerp (24/10)</option>
-              <option value="realtime">Método 2: RealTime Big Data (23/10)</option>
             </select>
-            <span class="glass-pill pill-indigo">Cenário 2º Turno</span>
+            <span class="glass-pill pill-indigo">6 UFs c/ 2ºT Gov • 21 UFs s/ 2ºT Gov</span>
           </div>
         </div>
 
@@ -335,6 +333,7 @@
               <tr>
                 <th>UF</th>
                 <th>Estado & Região</th>
+                <th>2ºT Gov</th>
                 <th>Abst. 1ºT</th>
                 <th>Abst. 2ºT Proj.</th>
                 <th>Delta Abst.</th>
