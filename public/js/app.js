@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ==========================================================================
  * APPLE LIQUID GLASS ELECTORAL INTELLIGENCE WEB APP
  * Client-Side Application Logic • Vanilla JS + Chart.js
@@ -39,8 +39,18 @@ function fmtSign(val, decimals = 2) {
 }
 
 // ==========================================
-// TAB NAVIGATION
+// TAB NAVIGATION & THEME TOGGLE
 // ==========================================
+function toggleTheme() {
+  document.body.classList.toggle('theme-dark');
+  if (state.polls && state.polls.length > 0) {
+    renderPollsRankingChart();
+  }
+  if (state.rfCoefs && state.rfCoefs.length > 0 && state.charts.rf) {
+    renderRfChart();
+  }
+}
+
 function switchTab(tabId) {
   const tabs = ['tab-backtest', 'tab-projections', 'tab-rf', 'tab-teoria'];
   tabs.forEach(id => {
@@ -101,10 +111,10 @@ async function initApp() {
       state.rfCoefs = rfRes.coefficients;
     }
 
-    // Render Views
-    renderBacktestTab();
-    renderProjectionsTab();
-    renderRfTab();
+    // Render Views (Projections 2026 first, each isolated so CSP never blocks)
+    try { renderProjectionsTab(); } catch (e) { console.error('[ProjectionsTab]', e); }
+    try { renderBacktestTab(); } catch (e) { console.error('[BacktestTab]', e); }
+    try { renderRfTab(); } catch (e) { console.error('[RfTab]', e); }
 
     console.log('[Liquid Glass] App successfully rendered.');
   } catch (err) {
@@ -232,6 +242,30 @@ function renderPollsRankingChart() {
   const labels = items.map(it => it.name);
   const dataBruto = items.map(it => it.erroBruto);
   const dataM2 = items.map(it => it.erroM2);
+  const isLight = !document.body.classList.contains('theme-dark');
+  const textColor = isLight ? '#0C0C0C' : '#F5F5F7';
+  const subTextColor = isLight ? '#333A3F' : '#D4D4D8';
+  const gridColor = isLight ? 'rgba(0, 0, 0, 0.10)' : 'rgba(255, 255, 255, 0.08)';
+
+  if (typeof Chart === 'undefined') {
+    const parent = canvas.parentElement;
+    if (parent) {
+      parent.style.height = 'auto';
+      parent.innerHTML = items.map(it => `
+        <div style="margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;margin-bottom:3px;color:var(--text-primary);">
+            <span>${it.name}</span>
+            <span class="mono">Bruto: ${it.erroBruto !== null ? fmtDec(it.erroBruto) + ' p.p.' : '—'} | Ajustado: <b style="color:var(--apple-blue);">${fmtDec(it.erroM2)} p.p.</b></span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="height:10px;background:var(--bg-card-alt);"><div style="height:100%;width:${Math.min(100, ((it.erroBruto || 0) / 3.5) * 100)}%;background:#758D99;"></div></div>
+            <div style="height:10px;background:var(--bg-card-alt);"><div style="height:100%;width:${Math.min(100, (it.erroM2 / 3.5) * 100)}%;background:var(--apple-blue);"></div></div>
+          </div>
+        </div>
+      `).join('');
+    }
+    return;
+  }
 
   state.charts.polls = new Chart(ctx, {
     type: 'bar',
@@ -241,8 +275,8 @@ function renderPollsRankingChart() {
         {
           label: 'Erro Placar Bruto (29/10/2022)',
           data: dataBruto,
-          backgroundColor: 'rgba(161, 161, 170, 0.55)',
-          borderColor: 'rgba(212, 212, 216, 0.95)',
+          backgroundColor: isLight ? 'rgba(117, 141, 153, 0.65)' : 'rgba(161, 161, 170, 0.55)',
+          borderColor: isLight ? '#5E6870' : 'rgba(212, 212, 216, 0.95)',
           borderWidth: 1.5,
           borderRadius: 0,
           barPercentage: 0.7,
@@ -251,8 +285,8 @@ function renderPollsRankingChart() {
         {
           label: 'Erro Placar Método 2 (Com Abstenção RF)',
           data: dataM2,
-          backgroundColor: 'rgba(62, 188, 210, 0.90)',
-          borderColor: '#7DD3FC',
+          backgroundColor: isLight ? '#006BA2' : 'rgba(62, 188, 210, 0.90)',
+          borderColor: isLight ? '#004E78' : '#7DD3FC',
           borderWidth: 1.5,
           borderRadius: 0,
           barPercentage: 0.7,
@@ -267,8 +301,8 @@ function renderPollsRankingChart() {
         legend: {
           position: 'top',
           labels: {
-            font: { family: '-apple-system, SF Pro Display, sans-serif', size: 12.5, weight: '600' },
-            color: '#F5F5F7',
+            font: { family: '"IBM Plex Sans", -apple-system, sans-serif', size: 12.5, weight: '600' },
+            color: textColor,
             usePointStyle: true,
             boxWidth: 8
           }
@@ -295,23 +329,23 @@ function renderPollsRankingChart() {
         x: {
           grid: { display: false },
           ticks: {
-            color: '#E4E4E7',
-            font: { family: '-apple-system, SF Pro Text, sans-serif', size: 11.5, weight: '500' }
+            color: textColor,
+            font: { family: '"IBM Plex Sans", -apple-system, sans-serif', size: 11.5, weight: '600' }
           }
         },
         y: {
           beginAtZero: true,
           max: 4.5,
-          grid: { color: 'rgba(255, 255, 255, 0.08)' },
+          grid: { color: gridColor },
           ticks: {
-            color: '#D4D4D8',
-            font: { family: 'SF Mono, monospace', size: 11 },
+            color: subTextColor,
+            font: { family: '"IBM Plex Mono", monospace', size: 11 },
             callback: value => value.toFixed(1) + ' p.p.'
           },
           title: {
             display: true,
             text: 'Erro Absoluto Frente ao TSE (pontos percentuais)',
-            color: '#A1A1AA',
+            color: subTextColor,
             font: { size: 12, weight: '600' }
           }
         }
@@ -808,6 +842,25 @@ function renderRfChart() {
   const labels = sorted.map(s => `${s.uf} — ${s.estado}`);
   const importances = sorted.map(s => Number(s.rf_importance_pct));
   const shapValues = sorted.map(s => Number(s.rf_shap_coef));
+  const isLight = !document.body.classList.contains('theme-dark');
+  const textColor = isLight ? '#0C0C0C' : '#F5F5F7';
+  const subTextColor = isLight ? '#333A3F' : '#D4D4D8';
+  const gridColor = isLight ? 'rgba(0, 0, 0, 0.10)' : 'rgba(255, 255, 255, 0.08)';
+
+  if (typeof Chart === 'undefined') {
+    const parent = canvas.parentElement;
+    if (parent) {
+      parent.style.height = 'auto';
+      parent.innerHTML = sorted.map(s => `
+        <div class="bar-row" style="grid-template-columns: 165px 1fr 130px;">
+          <div class="bar-label"><b>${s.uf}</b> — ${s.estado}</div>
+          <div style="height:12px;background:var(--bg-card-alt);"><div style="height:100%;width:${Math.min(100, (Number(s.rf_importance_pct) / 28) * 100)}%;background:var(--apple-blue);"></div></div>
+          <div class="bar-val mono" style="color:var(--apple-blue);">Peso ${fmtDec(s.rf_importance_pct, 1)}% (${fmtSign(s.rf_shap_coef, 2)})</div>
+        </div>
+      `).join('');
+    }
+    return;
+  }
 
   state.charts.rf = new Chart(ctx, {
     type: 'bar',
@@ -817,8 +870,8 @@ function renderRfChart() {
         {
           label: 'Importância no Modelo RF (%)',
           data: importances,
-          backgroundColor: 'rgba(62, 188, 210, 0.90)',
-          borderColor: '#7DD3FC',
+          backgroundColor: isLight ? '#006BA2' : 'rgba(62, 188, 210, 0.90)',
+          borderColor: isLight ? '#004E78' : '#7DD3FC',
           borderWidth: 1.5,
           borderRadius: 0
         },
@@ -826,7 +879,7 @@ function renderRfChart() {
           label: 'Coeficiente Marginal SHAP (p.p.)',
           data: shapValues,
           backgroundColor: 'rgba(227, 18, 11, 0.85)',
-          borderColor: '#C4B5FD',
+          borderColor: '#E3120B',
           borderWidth: 1.5,
           borderRadius: 0
         }
@@ -840,8 +893,8 @@ function renderRfChart() {
         legend: {
           position: 'top',
           labels: {
-            font: { family: '-apple-system, SF Pro Display, sans-serif', size: 12.5, weight: '600' },
-            color: '#F5F5F7',
+            font: { family: '"IBM Plex Sans", -apple-system, sans-serif', size: 12.5, weight: '600' },
+            color: textColor,
             usePointStyle: true
           }
         },
@@ -856,12 +909,12 @@ function renderRfChart() {
       },
       scales: {
         x: {
-          grid: { color: 'rgba(255, 255, 255, 0.08)' },
-          ticks: { font: { family: 'SF Mono, monospace', size: 11 } }
+          grid: { color: gridColor },
+          ticks: { color: subTextColor, font: { family: '"IBM Plex Mono", monospace', size: 11 } }
         },
         y: {
           grid: { display: false },
-          ticks: { font: { family: '-apple-system, SF Pro Text, sans-serif', size: 12, weight: '500' } }
+          ticks: { color: textColor, font: { family: '"IBM Plex Sans", -apple-system, sans-serif', size: 12, weight: '600' } }
         }
       }
     }
@@ -903,8 +956,12 @@ function renderRfTable() {
   }).join('');
 }
 
-// Start application upon DOM load
-document.addEventListener('DOMContentLoaded', initApp);
+// Start application upon DOM load (or immediately if already loaded)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
 
 

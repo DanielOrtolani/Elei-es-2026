@@ -1,47 +1,19 @@
-﻿/* ============================================================================
+/* ============================================================================
    THE ECONOMIST ("GRAPHIC DETAIL") & EDITORIAL DATAVIZ DESIGN SYSTEM
    High Data-Ink Ratio · Sharp 0px Geometry · Signature Red Top Bar (#E3120B)
    Default: Charcoal Slate (#16191D) with 1-Click Toggle to Classic Print (#F2F4F5)
    ============================================================================ */
 
-:root {
-  color-scheme: dark;
-  --econ-red: #E3120B;
-  --econ-red-bright: #FF4D47;
-  --econ-blue: #3EBCD2;
-  --econ-blue-deep: #006BA2;
-  --econ-teal: #379A8B;
-  --econ-gold: #EBB434;
-
-  /* Tema Padrão: Cinza Chumbo Editorial (Charcoal Slate) */
-  --bg-page: #16191D;
-  --bg-card: #1F242A;
-  --bg-card-alt: #262C34;
-  --bg-table-head: #282F38;
-  --rule-strong: #8C969E;
-  --rule-light: rgba(255, 255, 255, 0.13);
-  --rule-subtle: rgba(255, 255, 255, 0.08);
-
-  /* Tipografia de alta legibilidade */
-  --text-primary: #F5F7F8;
-  --text-secondary: #D5DCE0;
-  --text-tertiary: #9BA5AE;
-
-  /* Mapeamento de variáveis legadas do app.js */
-  --apple-blue: #3EBCD2;
-  --apple-red: #FF524B;
-  --apple-green: #379A8B;
-  --apple-amber: #EBB434;
-  --apple-indigo: #5DA5DA;
-
-  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
-  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "IBM Plex Mono", Consolas, monospace;
-}
-
-/* Modo Papel Clássico The Economist (Ativável com 1 clique no topo) */
-body.theme-light {
+:root, html, body, .app-shell {
   color-scheme: light;
+  --econ-red: #E3120B;
+  --econ-red-bright: #E3120B;
+  --econ-blue: #006BA2;
+  --econ-blue-deep: #006BA2;
+  --econ-teal: #2E7D6F;
+  --econ-gold: #B47B00;
+
+  /* Tema Padrão (Idêntico ao localhost:3000 da captura): Papel Clássico The Economist */
   --bg-page: #F2F4F5;
   --bg-card: #FFFFFF;
   --bg-card-alt: #E9EDF0;
@@ -49,14 +21,44 @@ body.theme-light {
   --rule-strong: #0C0C0C;
   --rule-light: #C9D3D8;
   --rule-subtle: #DFE5E8;
+
+  /* Tipografia de alta legibilidade */
   --text-primary: #0C0C0C;
   --text-secondary: #333A3F;
   --text-tertiary: #5E6870;
+
+  /* Cores semânticas das séries */
   --apple-blue: #006BA2;
   --apple-red: #E3120B;
   --apple-green: #2E7D6F;
   --apple-amber: #B47B00;
   --apple-indigo: #00588D;
+
+  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, monospace;
+}
+
+/* Modo Alternativo: Cinza Chumbo Editorial (Ativável com 1 clique no topo) */
+body.theme-dark, body.theme-dark .app-shell {
+  color-scheme: dark;
+  --econ-red: #E3120B;
+  --econ-red-bright: #FF4D47;
+  --bg-page: #16191D;
+  --bg-card: #1F242A;
+  --bg-card-alt: #262C34;
+  --bg-table-head: #282F38;
+  --rule-strong: #8C969E;
+  --rule-light: rgba(255, 255, 255, 0.13);
+  --rule-subtle: rgba(255, 255, 255, 0.08);
+  --text-primary: #F5F7F8;
+  --text-secondary: #D5DCE0;
+  --text-tertiary: #9BA5AE;
+  --apple-blue: #3EBCD2;
+  --apple-red: #FF524B;
+  --apple-green: #379A8B;
+  --apple-amber: #EBB434;
+  --apple-indigo: #5DA5DA;
 }
 
 * {
@@ -113,9 +115,6 @@ html, body {
   letter-spacing: 0.08em;
   color: var(--econ-red-bright);
   margin-bottom: 6px;
-}
-body.theme-light .eyebrow {
-  color: var(--econ-red);
 }
 
 .hero-title {
@@ -261,9 +260,6 @@ body.theme-light .eyebrow {
   letter-spacing: 0.08em;
   color: var(--econ-red-bright);
   margin-bottom: 4px;
-}
-body.theme-light .chart-kicker {
-  color: var(--econ-red);
 }
 
 .section-title {
@@ -454,10 +450,10 @@ body.theme-light .chart-kicker {
 
 .bar-fill-right {
   height: 100%;
-  background-color: #3EBCD2;
-}
-body.theme-light .bar-fill-right {
   background-color: #006BA2;
+}
+body.theme-dark .bar-fill-right {
+  background-color: #3EBCD2;
 }
 
 .bar-fill-left {

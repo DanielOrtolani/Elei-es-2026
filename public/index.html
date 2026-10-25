@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/liquid-glass.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="theme-light">
   <div class="app-shell">
 
     <!-- MASTHEAD ESTILO THE ECONOMIST ("GRAPHIC DETAIL") -->
@@ -24,7 +24,7 @@
         </p>
       </div>
       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px;">
-        <button class="theme-toggle-btn" onclick="document.body.classList.toggle('theme-light')">
+        <button class="theme-toggle-btn" onclick="toggleTheme()">
           Alternar Fundo: Cinza Chumbo / Papel Clássico
         </button>
         <div style="font-size:11.5px; color:var(--text-tertiary); font-family:var(--font-mono);">
