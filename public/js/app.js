@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ==========================================================================
  * APPLE LIQUID GLASS ELECTORAL INTELLIGENCE WEB APP
  * Client-Side Application Logic • Vanilla JS + Chart.js
@@ -42,7 +42,7 @@ function fmtSign(val, decimals = 2) {
 // TAB NAVIGATION
 // ==========================================
 function switchTab(tabId) {
-  const tabs = ['tab-backtest', 'tab-projections', 'tab-rf'];
+  const tabs = ['tab-backtest', 'tab-projections', 'tab-rf', 'tab-teoria'];
   tabs.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.add('hidden');
@@ -53,9 +53,10 @@ function switchTab(tabId) {
 
   // Update nav buttons
   document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
-  if (tabId === 'tab-backtest') document.getElementById('tab-btn-backtest').classList.add('active');
-  if (tabId === 'tab-projections') document.getElementById('tab-btn-projections').classList.add('active');
-  if (tabId === 'tab-rf') document.getElementById('tab-btn-rf').classList.add('active');
+  if (tabId === 'tab-backtest') document.getElementById('tab-btn-backtest')?.classList.add('active');
+  if (tabId === 'tab-projections') document.getElementById('tab-btn-projections')?.classList.add('active');
+  if (tabId === 'tab-rf') document.getElementById('tab-btn-rf')?.classList.add('active');
+  if (tabId === 'tab-teoria') document.getElementById('tab-btn-teoria')?.classList.add('active');
 
   // Re-render / resize charts
   if (tabId === 'tab-backtest' && state.charts.polls) {
@@ -904,3 +905,4 @@ function renderRfTable() {
 
 // Start application upon DOM load
 document.addEventListener('DOMContentLoaded', initApp);
+
