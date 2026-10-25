@@ -3,69 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projeção Eleições 2026 • Quem Vai Votar no 2º Turno?</title>
+  <title>Graphic Detail | Projeção do 2º Turno Presidencial de 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Merriweather:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/liquid-glass.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="app-shell">
 
-    <!-- CABEÇALHO SIMPLES E DIRETO -->
-    <header class="liquid-glass hero-header" style="padding: 22px 28px; margin-bottom: 18px;">
+    <!-- MASTHEAD ESTILO THE ECONOMIST ("GRAPHIC DETAIL") -->
+    <header class="econ-masthead">
       <div>
-        <div class="eyebrow"><span>🗳️ Eleições Presidenciais 2026 • 2º Turno</span></div>
-        <h1 class="hero-title" style="font-size: 26px; margin-bottom: 6px;">Projeção do 2º Turno: O Impacto de Quem Deixa de Votar</h1>
-        <p class="hero-subtitle" style="font-size: 14px; max-width: 820px;">
-          Nem todo mundo que responde a uma pesquisa vai até a urna no domingo. Este painel mostra o resultado projetado para Presidente levando em conta quantos eleitores devem faltar em cada estado — especialmente onde a eleição para Governador já acabou no 1º turno.
+        <div class="econ-brand-box">Graphic Detail</div>
+        <div class="eyebrow">BRASIL · ELEIÇÕES PRESIDENCIAIS DE 2026 · SEGUNDO TURNO</div>
+        <h1 class="hero-title">O peso decisivo de quem deixa de ir votar</h1>
+        <p class="hero-subtitle">
+          Declarar voto em uma pesquisa não exige sair de casa; ir até a urna no domingo depende de mobilização local. Com 21 estados já tendo encerrado a disputa para Governador no 1º turno, a abstenção diferenciada por estado redesenha o placar entre Flávio Bolsonaro e Luiz Inácio Lula da Silva.
         </p>
       </div>
-      <div class="header-badges">
-        <span class="glass-pill pill-blue">Flávio Bolsonaro vs. Lula</span>
-        <span class="glass-pill pill-green">Dados dos 27 Estados</span>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:10px;">
+        <button class="theme-toggle-btn" onclick="document.body.classList.toggle('theme-light')">
+          Alternar Fundo: Cinza Chumbo / Papel Clássico
+        </button>
+        <div style="font-size:11.5px; color:var(--text-tertiary); font-family:var(--font-mono);">
+          EDIÇÃO DE VÉSPERA · 24 OUT 2026
+        </div>
       </div>
     </header>
 
-    <!-- 4 CARTÕES DE RESUMO (EM LINGUAGEM CLARA) -->
-    <section class="kpi-grid" style="margin-bottom: 20px;">
-      <div class="liquid-glass liquid-glass-interactive kpi-card">
-        <div class="kpi-label">Projeção pelas Urnas do 1º Turno</div>
+    <!-- 4 INDICADORES PRINCIPAIS (EM DESTAQUE PARA 2026) -->
+    <section class="kpi-grid">
+      <div class="liquid-glass kpi-card">
+        <div class="kpi-label">I · Projeção pelas Urnas (1º Turno)</div>
         <div class="kpi-value" style="color: var(--apple-blue);">51,90% × 48,10%</div>
-        <div class="kpi-desc">Baseada apenas nos votos reais do 1º turno e no comparecimento histórico: vantagem de <b>+4,56 milhões de votos</b> para Flávio Bolsonaro.</div>
+        <div class="kpi-desc">Calculada a partir dos votos reais do 1º turno e da abstenção histórica estadual: vantagem de <b>+4,56 milhões de votos</b> para Flávio Bolsonaro.</div>
       </div>
 
-      <div class="liquid-glass liquid-glass-interactive kpi-card">
-        <div class="kpi-label">Média das Pesquisas (Ajustada)</div>
+      <div class="liquid-glass kpi-card">
+        <div class="kpi-label">II · Consenso das Pesquisas (Ajustado)</div>
         <div class="kpi-value" style="color: var(--apple-green);">50,91% × 49,09%</div>
-        <div class="kpi-desc">Média das 5 principais pesquisas de véspera após descontar quem não deve ir votar: vantagem de <b>+2,22 milhões de votos</b> para Flávio.</div>
+        <div class="kpi-desc">Média das 5 pesquisas com recorte regional após descontar os eleitores que devem faltar no domingo: <b>+2,22 milhões de votos</b> para Flávio.</div>
       </div>
 
-      <div class="liquid-glass liquid-glass-interactive kpi-card">
-        <div class="kpi-label">Datafolha & Quaest (Ajustadas)</div>
-        <div class="kpi-value" style="color: var(--apple-indigo);">50,89% × 49,11%</div>
-        <div class="kpi-desc">Nos dois institutos tradicionais, o placar ajustado pelo comparecimento aponta vantagem de <b>+2,16 milhões de votos</b> para Flávio.</div>
+      <div class="liquid-glass kpi-card">
+        <div class="kpi-label">III · Datafolha & Quaest (Ajustadas)</div>
+        <div class="kpi-value" style="color: var(--apple-blue);">50,89% × 49,11%</div>
+        <div class="kpi-desc">Nos dois levantamentos presenciais tradicionais, o desconto de abstenção por estado projeta vantagem de <b>+2,16 milhões de votos</b> para Flávio.</div>
       </div>
 
-      <div class="liquid-glass liquid-glass-interactive kpi-card">
-        <div class="kpi-label">Efeito da Disputa para Governador</div>
+      <div class="liquid-glass kpi-card">
+        <div class="kpi-label">IV · Efeito da Disputa para Governador</div>
         <div class="kpi-value" style="color: var(--apple-amber);">+191 mil votos</div>
-        <div class="kpi-desc">Como 21 estados já definiram governador no 1º turno, mais eleitores faltam no 2º turno, gerando saldo extra para Flávio.</div>
+        <div class="kpi-desc">A ausência de 2º turno para governador em 8 dos 9 estados do Nordeste desmobiliza mais eleitores locais, somando <b>+0,16 p.p.</b> para Flávio.</div>
       </div>
     </section>
 
-    <!-- MENU DE NAVEGAÇÃO (4 ABAS) -->
-    <nav class="nav-dock-wrapper" style="margin-bottom: 20px;">
+    <!-- BARRA DE NAVEGAÇÃO EDITORIAL -->
+    <nav class="nav-dock-wrapper">
       <div class="nav-dock" role="tablist">
         <button class="nav-tab active" id="tab-btn-projections" onclick="switchTab('tab-projections')">
-          📊 Projeções 2026
+          01 · Projeções 2026
         </button>
         <button class="nav-tab" id="tab-btn-backtest" onclick="switchTab('tab-backtest')">
-          ⏪ Teste do Modelo em 2022
+          02 · Teste Histórico em 2022
         </button>
         <button class="nav-tab" id="tab-btn-rf" onclick="switchTab('tab-rf')">
-          🗺️ Abstenção por Estado
+          03 · Abstenção por Estado
         </button>
         <button class="nav-tab" id="tab-btn-teoria" onclick="switchTab('tab-teoria')">
-          💡 Como Funciona (Explicação Simples)
+          04 · Explicação da Teoria
         </button>
       </div>
     </nav>
@@ -74,50 +82,60 @@
          ABA 1 (PRINCIPAL): PROJEÇÕES 2026
          ========================================================================== -->
     <main id="tab-projections" class="view-panel">
-      <!-- Termômetros 2026 -->
+      <!-- Gráfico 1: Termômetros 2026 -->
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Quem Vence no 2º Turno? Comparativo das Projeções</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              As barras abaixo mostram a divisão dos votos válidos (descontando brancos e nulos) em quatro leituras diferentes da disputa. A linha tracejada no meio marca os <b>50,0% necessários para vencer a eleição</b>: quanto mais a barra azul avança para a direita da linha central, maior é a vantagem projetada de Flávio Bolsonaro sobre Lula.
+            <div class="chart-kicker">GRÁFICO 1 · SÍNTESE NACIONAL</div>
+            <h2 class="section-title">A vantagem silenciosa do comparecimento às urnas</h2>
+            <p class="section-subtitle">
+              Cada barra horizontal mostra como os votos válidos (excluindo brancos e nulos) se dividem entre Flávio Bolsonaro (azul) e Lula (vermelho) segundo quatro estimativas. A linha vertical no centro marca os <b>50,0% necessários para vencer</b>: em todos os cenários ajustados pelo comparecimento de cada estado, Flávio Bolsonaro supera a linha de maioria.
             </p>
           </div>
-          <span class="glass-pill pill-neutral">Linha de Vitória: 50,0%</span>
+          <span class="glass-pill pill-neutral">Em % dos votos válidos</span>
         </div>
         <div id="thermometer-2026-box"></div>
+        <div class="chart-footer">
+          <span>Fonte: TSE; Datafolha; Genial/Quaest; CNT/MDA; Futura/Apex; AtlasIntel; Modelo Preditivo de Comparecimento.</span>
+          <span>Nota: Universo estimado de 122,15 milhões de votos válidos no 2º turno.</span>
+        </div>
       </section>
 
-      <!-- Tabela: 5 Pesquisas de Véspera 2026 -->
+      <!-- Tabela 1: 5 Pesquisas Elegíveis de 2026 -->
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">O Que Dizem as Pesquisas de Véspera Após o Ajuste de Comparecimento</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              Esta tabela compara o número divulgado pelas pesquisas (<i>Placar da Pesquisa</i>) com o resultado esperado nas urnas (<i>Placar Ajustado</i>) quando levamos em conta quantos eleitores costumam faltar em cada estado. Incluímos apenas os 5 institutos que divulgaram dados detalhados por região, permitindo medir também o impacto dos 6 estados que ainda têm disputa para Governador.
+            <div class="chart-kicker">QUADRO 1 · LEVANTAMENTOS DE VÉSPERA (24/10/2026)</div>
+            <h2 class="section-title">Onde o eleitor deixa de ir votar, o placar muda</h2>
+            <p class="section-subtitle">
+              Esta tabela compara a intenção de voto divulgada por cada instituto (<i>Pesquisa Bruta</i>) com o placar esperado nas urnas (<i>Placar Ajustado</i>) após aplicarmos a taxa prevista de faltas em cada estado. Foram incluídas apenas as 5 pesquisas que divulgaram dados detalhados por região, permitindo calcular exatamente o saldo gerado pelos 6 estados que ainda têm disputa para Governador.
             </p>
           </div>
-          <span class="glass-pill pill-green">5 Pesquisas com Dados por Região</span>
+          <span class="glass-pill pill-green">5 Institutos com Dados por Estado</span>
         </div>
 
         <div class="table-wrapper">
           <table class="glass-table">
             <thead>
               <tr>
-                <th>Instituto de Pesquisa</th>
-                <th>Registro & Entrevistas</th>
-                <th>Tipo de Coleta</th>
-                <th>Placar da Pesquisa</th>
+                <th>Instituto</th>
+                <th>Registro TSE & Amostra</th>
+                <th>Coleta</th>
+                <th>Pesquisa Bruta</th>
                 <th>Placar Ajustado</th>
                 <th>Votos Flávio</th>
                 <th>Votos Lula</th>
-                <th>Diferença Total</th>
-                <th>Nos 6 Estados c/ 2ºT Gov</th>
-                <th>Impacto do 2ºT Gov</th>
+                <th>Vantagem Total</th>
+                <th>Saldo 6 UFs c/ 2ºT Gov</th>
+                <th>Efeito 2ºT Gov</th>
               </tr>
             </thead>
             <tbody id="polls-2026-table-body"></tbody>
           </table>
+        </div>
+        <div class="chart-footer">
+          <span>Fonte: Relatórios registrados no TSE em 24/10/2026 ponderados pelos coeficientes estaduais de abstenção.</span>
+          <span>Excluídos institutos sem recorte regional aberto.</span>
         </div>
       </section>
 
@@ -126,9 +144,10 @@
         <section class="liquid-glass section-card">
           <div class="section-header">
             <div>
-              <h2 class="section-title">Vantagem em Cada Estado (27 UFs)</h2>
-              <p class="section-subtitle" style="margin-top: 6px; font-size: 13px; line-height: 1.45; color: var(--text-secondary);">
-                Mostra o tamanho da vitória em cada estado: barras <b>azuis para a direita</b> indicam estados onde Flávio Bolsonaro vence, enquanto barras <b>vermelhas para a esquerda</b> mostram estados onde Lula lidera.
+              <div class="chart-kicker">GRÁFICO 2 · GEOGRAFIA DO VOTO</div>
+              <h2 class="section-title">Um país dividido entre Norte-Nordeste e Centro-Sul</h2>
+              <p class="section-subtitle">
+                Mostra a vantagem em pontos percentuais em cada um dos 27 estados: barras <b>azuis para a direita</b> indicam vitória de Flávio Bolsonaro; barras <b>vermelhas para a esquerda</b> indicam vitória de Lula.
               </p>
             </div>
             <select id="select-method-diverging" class="glass-select" onchange="renderDivergingMargins()">
@@ -137,26 +156,34 @@
             </select>
           </div>
           <div id="diverging-margins-container" class="diverging-chart"></div>
+          <div class="chart-footer">
+            <span>Fonte: Modelagem estadual sobre dados do TSE e AtlasIntel.</span>
+          </div>
         </section>
 
         <section class="liquid-glass section-card">
           <div class="section-header">
             <div>
-              <h2 class="section-title">Total de Votos por Região do País</h2>
-              <p class="section-subtitle" style="margin-top: 6px; font-size: 13px; line-height: 1.45; color: var(--text-secondary);">
-                Compara quantos milhões de votos cada candidato conquista nas 5 regiões do Brasil. O Sudeste e o Sul concentram a maior vantagem numérica de Flávio, enquanto o Nordeste concentra a vantagem de Lula.
+              <div class="chart-kicker">GRÁFICO 3 · PESO DAS REGIÕES</div>
+              <h2 class="section-title">O Sudeste e o Sul superam a frente petista no Nordeste</h2>
+              <p class="section-subtitle">
+                Compara o volume total de votos (em milhões) conquistado por cada candidato nas cinco regiões. A vantagem acumulada por Flávio no Sudeste, Sul e Centro-Oeste supera a margem de Lula no Nordeste.
               </p>
             </div>
-            <span class="glass-pill pill-blue">Em Milhões de Votos</span>
+            <span class="glass-pill pill-blue">Em milhões de votos</span>
           </div>
           <div id="regional-summary-box"></div>
 
-          <div style="margin-top: 22px;">
-            <h3 class="section-title" style="font-size: 15px; margin-bottom: 4px;">Estados Onde a Urna e a Pesquisa Mais Divergem</h3>
-            <p class="section-subtitle" style="margin-bottom: 10px; font-size: 12.5px; line-height: 1.4; color: var(--text-secondary);">
-              Mostra os 6 estados onde há maior diferença entre a projeção baseada no 1º turno e o que dizem as pesquisas (como Minas Gerais).
+          <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--rule-light);">
+            <div class="chart-kicker">DESTAQUE · ONDE HÁ INCERTEZA</div>
+            <h3 class="section-title" style="font-size: 16.5px;">Estados onde a urna do 1º turno e a pesquisa mais divergem</h3>
+            <p class="section-subtitle" style="margin-bottom: 10px; font-size: 13px;">
+              Exibe os 6 estados com maior distância entre o voto cristalizado no 1º turno e a pesquisa de véspera (com destaque para Minas Gerais).
             </p>
-            <div id="top-divergences-box" class="diverging-chart" style="max-height: 200px;"></div>
+            <div id="top-divergences-box" class="diverging-chart" style="max-height: 190px;"></div>
+          </div>
+          <div class="chart-footer">
+            <span>Fonte: Cálculos próprios com base no eleitorado de 2026.</span>
           </div>
         </section>
       </div>
@@ -165,9 +192,10 @@
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Detalhamento Completo nos 27 Estados</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              Consulte na tabela abaixo os dados de cada estado: se haverá 2º turno para Governador (o que reduz as faltas no domingo), a taxa de eleitores que não comparecem (abstenção) e o percentual projetado de votos para cada candidato.
+            <div class="chart-kicker">QUADRO 2 · MAPA ESTADUAL COMPLETO</div>
+            <h2 class="section-title">Raio-X dos 27 estados: onde há 2º turno para governador e quanto cada estado falta</h2>
+            <p class="section-subtitle">
+              Consulte na tabela abaixo os números detalhados de cada estado: a coluna <i>2ºT Governador</i> mostra os 6 estados que ainda escolhem governador neste domingo (reduzindo as faltas em 0,71 p.p.) ao lado dos percentuais projetados para cada candidato.
             </p>
           </div>
           <div style="display:flex; gap:10px; align-items:center;">
@@ -187,66 +215,78 @@
               <tr>
                 <th>UF</th>
                 <th>Estado</th>
-                <th>Tem 2ºT p/ Governador?</th>
-                <th>Faltas no 1ºT</th>
-                <th>Faltas Previstas 2ºT</th>
-                <th>Mudança</th>
+                <th>2ºT Governador</th>
+                <th>Faltas 1ºT</th>
+                <th>Faltas Prev. 2ºT</th>
+                <th>Variação</th>
                 <th>Flávio (Urnas)</th>
                 <th>Lula (Urnas)</th>
-                <th>Vantagem Urnas</th>
-                <th>Flávio (Pesquisa)</th>
-                <th>Lula (Pesquisa)</th>
-                <th>Vantagem Pesquisa</th>
+                <th>Margem Urnas</th>
+                <th>Flávio (Pesq.)</th>
+                <th>Lula (Pesq.)</th>
+                <th>Margem Pesq.</th>
                 <th>Diferença</th>
               </tr>
             </thead>
             <tbody id="projections-2026-table-body"></tbody>
           </table>
         </div>
+        <div class="chart-footer">
+          <span>Fonte: Tribunal Superior Eleitoral (1º turno 2026) e projeções do modelo Random Forest para o 2º turno.</span>
+        </div>
       </section>
     </main>
 
     <!-- ==========================================================================
-         ABA 2 (SECUNDÁRIA): TESTE DO MODELO EM 2022 (BACKTEST)
+         ABA 2 (SECUNDÁRIA): TESTE HISTÓRICO EM 2022
          ========================================================================== -->
     <main id="tab-backtest" class="view-panel hidden">
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Como o Nosso Método Se Saiu na Eleição Passada (2022)?</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              Para testar se a metodologia é confiável, aplicamos exatamente a mesma regra de cálculo na véspera do 2º turno de 2022 e comparamos com o resultado oficial das urnas divulgado pelo TSE (<b>Lula 50,90% × 49,10% Bolsonaro</b>). Veja como o ajuste pelo comparecimento praticamente cravou o resultado real.
+            <div class="chart-kicker">VALIDAÇÃO HISTÓRICA · ELEIÇÃO DE 2022</div>
+            <h2 class="section-title">O teste da realidade: como o método cravou o resultado de 2022</h2>
+            <p class="section-subtitle">
+              Para comprovar que o ajuste por comparecimento funciona na prática, aplicamos exatamente a mesma fórmula às pesquisas divulgadas no sábado anterior ao 2º turno de 2022 e comparamos com o resultado oficial das urnas (<b>Lula 50,90% × 49,10% Bolsonaro</b>).
             </p>
           </div>
-          <span class="glass-pill pill-neutral">Resultado Real 2022: 50,90% × 49,10%</span>
+          <span class="glass-pill pill-neutral">Resultado Oficial 2022: 50,90% × 49,10%</span>
         </div>
         <div id="thermometer-backtest-box"></div>
+        <div class="chart-footer">
+          <span>Fonte: Totalização oficial do TSE em 30/10/2022 (118,25 milhões de votos válidos).</span>
+        </div>
       </section>
 
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Quanto o Ajuste Reduziu o Erro das Pesquisas em 2022</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              Neste gráfico, barras menores significam maior precisão (menor erro frente às urnas). As barras cinzas mostram o erro original das pesquisas divulgadas no sábado antes da eleição de 2022, e as barras azuis mostram como o erro caiu após descontarmos os eleitores que deixaram de ir votar no domingo.
+            <div class="chart-kicker">GRÁFICO 4 · PRECISÃO DOS INSTITUTOS EM 2022</div>
+            <h2 class="section-title">Descontar quem falta à urna cortou o erro das pesquisas em dois terços</h2>
+            <p class="section-subtitle">
+              Barras menores significam menor erro em relação ao resultado oficial do TSE. Compare o erro original das pesquisas de véspera em 2022 (barras cinzas) com o erro após aplicarmos o nosso filtro de comparecimento estadual (barras azuis).
             </p>
           </div>
-          <span class="glass-pill pill-green">Quanto Menor a Barra, Mais Certeiro</span>
+          <span class="glass-pill pill-green">Erro em pontos percentuais (menor é melhor)</span>
         </div>
         <div class="chart-container-card" style="height: 300px;">
           <canvas id="chart-polls-ranking"></canvas>
         </div>
+        <div class="chart-footer">
+          <span>Fonte: Levantamentos de 29/10/2022 comparados à apuração oficial do TSE.</span>
+        </div>
       </section>
 
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Comparativo das 6 Pesquisas de Véspera de 2022 vs. Resultado das Urnas</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              A tabela abaixo mostra o placar que cada instituto divulgou na véspera da eleição de 2022 e o placar corrigido pelo nosso método. Na média das 6 pesquisas, o erro caiu de <b>1,25 p.p. para apenas 0,42 p.p.</b>, acertando o vencedor em 26 dos 27 estados.
+            <div class="chart-kicker">QUADRO 3 · AUDITORIA DAS 6 PESQUISAS ELEGÍVEIS DE 2022</div>
+            <h2 class="section-title">Na média dos 6 institutos, o erro caiu de 1,25 p.p. para apenas 0,42 p.p.</h2>
+            <p class="section-subtitle">
+              Veja abaixo o placar divulgado por cada instituto na véspera da eleição de 2022 e o placar corrigido pelo comparecimento estadual. Em 2022, a presença de 2º turno para governador em 5 estados do Nordeste rendeu +192 mil votos líquidos para Lula.
             </p>
           </div>
-          <span class="glass-pill pill-blue" id="table-count-badge">Eleição de 2022</span>
+          <span class="glass-pill pill-blue" id="table-count-badge">6 Pesquisas Auditadas · 2022</span>
         </div>
 
         <div class="table-wrapper">
@@ -264,20 +304,24 @@
                 <th>Melhora</th>
                 <th>Efeito 2ºT Governador</th>
                 <th>Erro por UF</th>
-                <th>Estados Certos</th>
+                <th>UFs Certas</th>
               </tr>
             </thead>
             <tbody id="polls-table-body"></tbody>
           </table>
+        </div>
+        <div class="chart-footer">
+          <span>Fonte: Dados oficiais do TSE e relatórios de véspera de 29/10/2022.</span>
         </div>
       </section>
 
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Resultado Real vs. Projeção em Cada Estado (2022)</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              Confira estado por estado a comparação entre a taxa de faltas real de 2022, a taxa prevista pelo nosso modelo e os percentuais finais de votos de cada candidato.
+            <div class="chart-kicker">QUADRO 4 · VALIDAÇÃO NOS 27 ESTADOS (2022)</div>
+            <h2 class="section-title">Resultado oficial das urnas vs. modelo estado por estado em 2022</h2>
+            <p class="section-subtitle">
+              Comparação detalhada entre o percentual de eleitores que faltaram em cada estado no 2º turno de 2022, a previsão do nosso modelo (treinado apenas com dados de 2014 e 2018) e o placar final de cada candidato.
             </p>
           </div>
         </div>
@@ -289,14 +333,14 @@
                 <th>Estado</th>
                 <th>Faltas Reais</th>
                 <th>Faltas Previstas</th>
-                <th>Diferença</th>
-                <th>Lula Real</th>
-                <th>Bolso Real</th>
+                <th>Desvio</th>
+                <th>Lula TSE</th>
+                <th>Bolso TSE</th>
                 <th>Lula (Urnas)</th>
                 <th>Bolso (Urnas)</th>
                 <th>Erro</th>
-                <th>Lula (Pesquisa)</th>
-                <th>Bolso (Pesquisa)</th>
+                <th>Lula (Pesq.)</th>
+                <th>Bolso (Pesq.)</th>
                 <th>Erro</th>
               </tr>
             </thead>
@@ -313,24 +357,29 @@
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Quais Estados Têm o Maior Aumento de Faltas no 2º Turno?</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              Este gráfico mostra os estados onde historicamente mais eleitores desistem de comparecer no 2º turno quando a disputa local já terminou. Estados do Norte (como Acre, Amapá, Roraima e Tocantins) têm a maior variação de faltas entre o 1º e o 2º turno.
+            <div class="chart-kicker">GRÁFICO 5 · ONDE MAIS ELEITORES DESISTEM NO 2º TURNO</div>
+            <h2 class="section-title">Estados do Norte lideram o aumento de faltas quando não há disputa local</h2>
+            <p class="section-subtitle">
+              Este gráfico mostra os estados onde historicamente mais eleitores deixam de comparecer no 2º turno após a definição do governador no 1º turno. Acre, Amapá, Roraima e Tocantins registram a maior sensibilidade de abstenção do país.
             </p>
           </div>
-          <span class="glass-pill pill-blue">Comportamento Histórico por Estado</span>
+          <span class="glass-pill pill-blue">Sensibilidade por UF (2014–2022)</span>
         </div>
         <div class="chart-container-card" style="height: 360px;">
           <canvas id="chart-rf-shap"></canvas>
+        </div>
+        <div class="chart-footer">
+          <span>Fonte: Estimativas do modelo Random Forest e regressão de efeitos fixos (2014, 2018 e 2022).</span>
         </div>
       </section>
 
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Tabela do Comportamento de Comparecimento nos 27 Estados</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);">
-              Veja abaixo quanto a abstenção (percentual de eleitores que faltam) costuma variar do 1º para o 2º turno em cada estado brasileiro com base nas eleições de 2014, 2018 e 2022.
+            <div class="chart-kicker">QUADRO 5 · PARÂMETROS ESTADUAIS</div>
+            <h2 class="section-title">Histórico de variação de faltas entre o 1º e o 2º turno nos 27 estados</h2>
+            <p class="section-subtitle">
+              Consulte quanto o percentual de faltas costuma subir ou cair no 2º turno em cada estado brasileiro e o peso de cada unidade federativa no modelo preditivo.
             </p>
           </div>
         </div>
@@ -340,11 +389,11 @@
               <tr>
                 <th>UF</th>
                 <th>Estado & Região</th>
-                <th>Peso no Aumento de Faltas</th>
-                <th>Relevância no Modelo</th>
-                <th>Aumento Médio Histórico (1ºT → 2ºT)</th>
+                <th>Coeficiente de Aumento de Faltas</th>
+                <th>Peso no Modelo (%)</th>
+                <th>Variação Média Histórica (1ºT → 2ºT)</th>
                 <th>Efeito Fixo Estadual</th>
-                <th>Sensibilidade de Comparecimento</th>
+                <th>Grau de Sensibilidade</th>
               </tr>
             </thead>
             <tbody id="rf-coefs-table-body"></tbody>
@@ -354,51 +403,52 @@
     </main>
 
     <!-- ==========================================================================
-         ABA 4 (NOVA): COMO FUNCIONA (EXPLICAÇÃO SIMPLES PARA LEIGOS)
+         ABA 4: EXPLICAÇÃO DA TEORIA PARA LEIGOS
          ========================================================================== -->
     <main id="tab-teoria" class="view-panel hidden">
       <section class="liquid-glass section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Entenda a Teoria em 3 Minutos (Sem "Economês")</h2>
-            <p class="section-subtitle" style="margin-top: 6px; font-size: 14px; line-height: 1.55; color: var(--text-secondary);">
-              Por que as pesquisas de véspera muitas vezes erram por 1 a 2 pontos percentuais e como o calendário de eleições para Governador ajuda a prever o resultado real das urnas?
+            <div class="chart-kicker">GUIA DE LEITURA · SEM JARGÃO TÉCNICO</div>
+            <h2 class="section-title">Como funciona a nossa projeção: quatro ideias simples</h2>
+            <p class="section-subtitle">
+              Entenda em linguagem direta por que o comparecimento no domingo decide uma eleição apertada e como o fim das disputas para Governador no 1º turno muda o resultado presidencial.
             </p>
           </div>
-          <span class="glass-pill pill-green">Guia Rápido para Leigos</span>
+          <span class="glass-pill pill-neutral">Explicação para Leigos</span>
         </div>
 
         <div class="grid-2col" style="margin-top: 12px;">
-          <div class="liquid-glass kpi-card" style="background: rgba(39, 39, 42, 0.90); padding: 22px;">
-            <div class="kpi-label" style="color: var(--apple-blue); font-size: 13px;">1. O Problema das Pesquisas Comuns</div>
-            <h3 style="font-size: 17px; margin: 6px 0 10px; color: var(--text-primary);">Dizer em quem vota é fácil; ir até a urna no domingo dá trabalho</h3>
-            <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-secondary);">
-              Quando um entrevistador pergunta na rua ou pelo celular <i>"Em quem você vai votar?"</i>, a pessoa responde sem custo nenhum. Porém, no domingo da eleição, cerca de <b>1 em cada 5 brasileiros (21%) não vai votar</b>. Como o percentual de faltas não é igual em todos os estados nem em todas as faixas de renda, o resultado da urna acaba sendo diferente da pesquisa pura.
+          <div class="liquid-glass kpi-card" style="padding: 22px;">
+            <div class="kpi-label" style="color: var(--apple-blue);">1 · O PROBLEMA DAS PESQUISAS COMUNS</div>
+            <h3 style="font-family: var(--font-serif); font-size: 18px; margin: 6px 0 10px; color: var(--text-primary);">Responder à pesquisa é grátis; ir votar no domingo tem custo</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
+              Quando um entrevistador aborda alguém na rua ou por telefone, responder <i>"vou votar em tal candidato"</i> não exige esforço. No domingo da eleição, porém, <b>1 em cada 5 brasileiros (cerca de 21%) não vai votar</b> por distância, custo de transporte ou desinteresse. Como essas faltas não acontecem na mesma proporção em todos os estados, o número que sai da urna difere da pesquisa bruta.
             </p>
           </div>
 
-          <div class="liquid-glass kpi-card" style="background: rgba(39, 39, 42, 0.90); padding: 22px;">
-            <div class="kpi-label" style="color: var(--apple-amber); font-size: 13px;">2. O Efeito "Carona" da Eleição para Governador</div>
-            <h3 style="font-size: 17px; margin: 6px 0 10px; color: var(--text-primary);">Por que o 2º turno para Governador muda a eleição para Presidente?</h3>
-            <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-secondary);">
-              Nos estados onde o Governador já foi eleito no 1º turno, prefeitos, deputados e cabos eleitorais desmontam seus comitês e param de mobilizar eleitores no 2º turno. Já nos estados onde <b>ainda há disputa para Governador no 2º turno</b>, a campanha local continua intensa na rua e a abstenção cai cerca de <b>0,7 ponto percentual</b>.
+          <div class="liquid-glass kpi-card" style="padding: 22px;">
+            <div class="kpi-label" style="color: var(--apple-amber);">2 · O EFEITO "CARONA" DO GOVERNADOR</div>
+            <h3 style="font-family: var(--font-serif); font-size: 18px; margin: 6px 0 10px; color: var(--text-primary);">Onde a eleição para Governador já acabou, mais gente falta no 2º turno</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
+              Nos estados onde o Governador já foi eleito no 1º turno, prefeitos, vereadores e cabos eleitorais encerram a campanha local e deixam de mobilizar eleitores no 2º turno. Já nos estados onde <b>ainda há disputa para Governador no 2º turno</b>, as campanhas estaduais continuam ativas nas ruas e o número de faltas cai cerca de <b>0,7 ponto percentual</b>.
             </p>
           </div>
 
-          <div class="liquid-glass kpi-card" style="background: rgba(39, 39, 42, 0.90); padding: 22px;">
-            <div class="kpi-label" style="color: var(--apple-green); font-size: 13px;">3. O Que Mudou de 2022 para 2026?</div>
-            <h3 style="font-size: 17px; margin: 6px 0 10px; color: var(--text-primary);">Em 2022 o mapa de governadores ajudou Lula; em 2026 ajuda Flávio</h3>
-            <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-secondary);">
-              Em <b>2022</b>, 5 estados do Nordeste (como Bahia, Pernambuco e Paraíba) tiveram 2º turno para governador, levando mais eleitores de Lula às urnas (+192 mil votos). Já em <b>2026</b>, <b>21 estados já decidiram governador no 1º turno</b> (incluindo 8 dos 9 estados do Nordeste). Nos únicos <b>6 estados com 2º turno para governador em 2026</b> (<code>AC, AM, DF, ES, RN e TO</code>), Flávio Bolsonaro vence em 4, ganhando um saldo extra de <b>+191 mil votos</b>.
+          <div class="liquid-glass kpi-card" style="padding: 22px;">
+            <div class="kpi-label" style="color: var(--apple-green);">3 · O QUE MUDOU DE 2022 PARA 2026</div>
+            <h3 style="font-family: var(--font-serif); font-size: 18px; margin: 6px 0 10px; color: var(--text-primary);">Em 2022 o mapa de governadores ajudou Lula; em 2026 ajuda Flávio</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
+              Em <b>2022</b>, 5 estados do Nordeste (Bahia, Pernambuco, Paraíba, Sergipe e Alagoas) tiveram 2º turno para governador, levando mais eleitores de Lula às urnas (+192 mil votos). Em <b>2026</b>, <b>21 estados já decidiram governador no 1º turno</b> — incluindo 8 dos 9 estados do Nordeste. Nos únicos <b>6 estados com 2º turno para governador em 2026</b> (<code>AC, AM, DF, ES, RN e TO</code>), Flávio Bolsonaro vence em 4, somando uma vantagem extra de <b>+191 mil votos</b>.
             </p>
           </div>
 
-          <div class="liquid-glass kpi-card" style="background: rgba(39, 39, 42, 0.90); padding: 22px;">
-            <div class="kpi-label" style="color: var(--apple-indigo); font-size: 13px;">4. Como Calculamos as Duas Projeções do Painel?</div>
-            <h3 style="font-size: 17px; margin: 6px 0 10px; color: var(--text-primary);">Duas formas independentes que apontam na mesma direção</h3>
-            <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-secondary);">
-              • <b>Projeção pelas Urnas (51,90% × 48,10%):</b> Olha apenas para os votos reais depositados nas urnas no 1º turno e projeta quantos eleitores vão comparecer em cada estado no 2º turno.<br/>
-              • <b>Pesquisas Ajustadas (50,91% × 49,09%):</b> Pega as 5 pesquisas de véspera que divulgaram dados regionais e aplica a taxa prevista de comparecimento de cada estado.
+          <div class="liquid-glass kpi-card" style="padding: 22px;">
+            <div class="kpi-label" style="color: var(--apple-indigo);">4 · AS DUAS RÉGUAS DO PAINEL</div>
+            <h3 style="font-family: var(--font-serif); font-size: 18px; margin: 6px 0 10px; color: var(--text-primary);">Dois caminhos independentes que apontam o mesmo favorito</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
+              • <b>Projeção pelas Urnas (51,90% × 48,10%):</b> Usa apenas os votos reais depositados nas urnas no 1º turno e calcula quantos eleitores devem comparecer em cada estado no 2º turno.<br/>
+              • <b>Pesquisas Ajustadas (50,91% × 49,09%):</b> Pega as 5 pesquisas de véspera que divulgaram dados regionais e desconta os eleitores que costumam faltar em cada estado.
             </p>
           </div>
         </div>
@@ -409,5 +459,3 @@
   <script src="/js/app.js"></script>
 </body>
 </html>
-
-

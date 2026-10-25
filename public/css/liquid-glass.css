@@ -1,28 +1,62 @@
-﻿:root {
-  color-scheme: dark !important;
-  --bg-charcoal: #18181B;
-  --bg-card: rgba(39, 39, 42, 0.85);
-  --bg-card-hover: rgba(52, 52, 56, 0.92);
-  --bg-subtle: rgba(24, 24, 27, 0.75);
-  --border-glass: rgba(255, 255, 255, 0.14);
-  --border-subtle: rgba(255, 255, 255, 0.08);
+﻿/* ============================================================================
+   THE ECONOMIST ("GRAPHIC DETAIL") & EDITORIAL DATAVIZ DESIGN SYSTEM
+   High Data-Ink Ratio · Sharp 0px Geometry · Signature Red Top Bar (#E3120B)
+   Default: Charcoal Slate (#16191D) with 1-Click Toggle to Classic Print (#F2F4F5)
+   ============================================================================ */
 
-  /* Textos de altíssimo contraste para leitura fácil sobre cinza chumbo */
-  --text-primary: #F5F5F7;
-  --text-secondary: #E4E4E7;
-  --text-tertiary: #A1A1AA;
+:root {
+  color-scheme: dark;
+  --econ-red: #E3120B;
+  --econ-red-bright: #FF4D47;
+  --econ-blue: #3EBCD2;
+  --econ-blue-deep: #006BA2;
+  --econ-teal: #379A8B;
+  --econ-gold: #EBB434;
 
-  /* Cores luminosas otimizadas para fundo escuro */
-  --apple-blue: #38BDF8;
-  --apple-blue-solid: #0A84FF;
-  --apple-red: #F87171;
-  --apple-red-solid: #FF453A;
-  --apple-green: #34D399;
-  --apple-amber: #FBBF24;
-  --apple-indigo: #A78BFA;
+  /* Tema Padrão: Cinza Chumbo Editorial (Charcoal Slate) */
+  --bg-page: #16191D;
+  --bg-card: #1F242A;
+  --bg-card-alt: #262C34;
+  --bg-table-head: #282F38;
+  --rule-strong: #8C969E;
+  --rule-light: rgba(255, 255, 255, 0.13);
+  --rule-subtle: rgba(255, 255, 255, 0.08);
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Tipografia de alta legibilidade */
+  --text-primary: #F5F7F8;
+  --text-secondary: #D5DCE0;
+  --text-tertiary: #9BA5AE;
+
+  /* Mapeamento de variáveis legadas do app.js */
+  --apple-blue: #3EBCD2;
+  --apple-red: #FF524B;
+  --apple-green: #379A8B;
+  --apple-amber: #EBB434;
+  --apple-indigo: #5DA5DA;
+
+  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, monospace;
+}
+
+/* Modo Papel Clássico The Economist (Ativável com 1 clique no topo) */
+body.theme-light {
+  color-scheme: light;
+  --bg-page: #F2F4F5;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #E9EDF0;
+  --bg-table-head: #E3E8EC;
+  --rule-strong: #0C0C0C;
+  --rule-light: #C9D3D8;
+  --rule-subtle: #DFE5E8;
+  --text-primary: #0C0C0C;
+  --text-secondary: #333A3F;
+  --text-tertiary: #5E6870;
+  --apple-blue: #006BA2;
+  --apple-red: #E3120B;
+  --apple-green: #2E7D6F;
+  --apple-amber: #B47B00;
+  --apple-indigo: #00588D;
 }
 
 * {
@@ -32,12 +66,7 @@
 }
 
 html, body {
-  background-color: var(--bg-charcoal) !important;
-  background-image:
-    radial-gradient(at 12% 10%, rgba(10, 132, 255, 0.14) 0px, transparent 48%),
-    radial-gradient(at 88% 12%, rgba(167, 139, 250, 0.10) 0px, transparent 45%),
-    radial-gradient(at 50% 90%, rgba(52, 211, 153, 0.08) 0px, transparent 50%) !important;
-  background-attachment: fixed;
+  background-color: var(--bg-page) !important;
   color: var(--text-primary) !important;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -46,94 +75,116 @@ html, body {
 }
 
 .app-shell {
-  max-width: 1400px;
+  max-width: 1340px;
   margin: 0 auto;
-  padding: 24px 24px 64px;
+  padding: 0 24px 72px;
 }
 
-/* Cartões Cinza Chumbo Liquid Glass */
-.liquid-glass {
-  background: var(--bg-card);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid var(--border-glass);
-  border-radius: 20px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.10);
-}
-
-.liquid-glass-interactive {
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-
-.liquid-glass-interactive:hover {
-  transform: translateY(-2px);
-  background: var(--bg-card-hover);
-  border-color: rgba(255, 255, 255, 0.24);
-}
-
-/* Header */
-.hero-header {
+/* Top Economist Masthead Banner */
+.econ-masthead {
+  border-top: 4px solid var(--econ-red);
+  border-bottom: 1px solid var(--rule-light);
+  padding: 18px 0 16px;
+  margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 20px;
   flex-wrap: wrap;
 }
 
+.econ-brand-box {
+  display: inline-block;
+  background: var(--econ-red);
+  color: #FFFFFF;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
 .eyebrow {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--apple-blue);
+  letter-spacing: 0.08em;
+  color: var(--econ-red-bright);
   margin-bottom: 6px;
+}
+body.theme-light .eyebrow {
+  color: var(--econ-red);
 }
 
 .hero-title {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.025em;
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   color: var(--text-primary);
+  margin-bottom: 8px;
 }
 
 .hero-subtitle {
-  font-size: 14.5px;
+  font-family: var(--font-sans);
+  font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.55;
+  max-width: 860px;
 }
 
-.header-badges {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+/* Editorial Cards ("Graphic Detail" Spec: 0px radius, top rule + red tag) */
+.liquid-glass {
+  position: relative;
+  background: var(--bg-card);
+  border: none;
+  border-top: 2px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-light);
+  border-radius: 0px !important;
+  box-shadow: none !important;
 }
 
-/* KPI Grid */
+/* The Economist Iconic Top-Left Red Rectangle */
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 44px;
+  height: 5px;
+  background-color: var(--econ-red);
+}
+
+/* KPI Strip (Editorial Summary Strip) */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  gap: 18px;
+  margin-bottom: 26px;
 }
 
 .kpi-card {
-  padding: 20px 22px;
+  padding: 18px 20px 16px;
 }
 
 .kpi-label {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--text-tertiary);
   margin-bottom: 6px;
 }
 
 .kpi-value {
-  font-size: 27px;
-  font-weight: 800;
   font-family: var(--font-mono);
-  letter-spacing: -0.03em;
-  margin-bottom: 8px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
 }
 
 .kpi-desc {
@@ -142,56 +193,54 @@ html, body {
   line-height: 1.45;
 }
 
-/* Navigation Dock */
+/* Editorial Section Navigation Bar */
 .nav-dock-wrapper {
-  display: flex;
-  justify-content: center;
+  border-top: 1px solid var(--rule-light);
+  border-bottom: 2px solid var(--rule-strong);
+  margin-bottom: 26px;
+  background: var(--bg-card);
 }
 
 .nav-dock {
-  display: inline-flex;
-  gap: 6px;
-  padding: 6px;
-  background: rgba(24, 24, 27, 0.85);
-  border: 1px solid var(--border-glass);
-  border-radius: 16px;
+  display: flex;
+  gap: 0;
   flex-wrap: wrap;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .nav-tab {
   border: none;
+  border-right: 1px solid var(--rule-light);
   background: transparent;
   color: var(--text-secondary);
   font-family: var(--font-sans);
   font-size: 13.5px;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 13px 22px;
+  border-radius: 0 !important;
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .nav-tab:hover {
+  background: var(--bg-card-alt);
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .nav-tab.active {
-  background: var(--apple-blue-solid);
+  background: var(--econ-red);
   color: #FFFFFF;
-  font-weight: 700;
-  box-shadow: 0 4px 14px rgba(10, 132, 255, 0.45);
 }
 
 .view-panel.hidden {
   display: none !important;
 }
 
-/* Section Cards */
+/* Section Cards ("Graphic Detail" Chart Boxes) */
 .section-card {
-  padding: 24px 26px;
-  margin-bottom: 20px;
+  padding: 22px 24px 18px;
+  margin-bottom: 24px;
 }
 
 .section-header {
@@ -199,85 +248,110 @@ html, body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-subtle);
   flex-wrap: wrap;
 }
 
+.chart-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--econ-red-bright);
+  margin-bottom: 4px;
+}
+body.theme-light .chart-kicker {
+  color: var(--econ-red);
+}
+
 .section-title {
-  font-size: 19px;
+  font-family: var(--font-serif);
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.015em;
+  line-height: 1.25;
 }
 
 .section-subtitle {
+  font-family: var(--font-sans);
   font-size: 14px;
-  color: var(--text-secondary) !important;
+  color: var(--text-secondary);
   line-height: 1.55;
+  margin-top: 6px;
+  max-width: 920px;
+}
+
+.chart-footer {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-subtle);
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 /* Grids */
 .grid-2col {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
-  gap: 20px;
+  gap: 22px;
 }
 
-.grid-3col {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-/* Pills & Badges (Alto Contraste em Fundo Escuro) */
+/* Sober Editorial Tags (Rectangular, 0px radius) */
 .glass-pill {
   display: inline-flex;
   align-items: center;
-  padding: 4px 11px;
-  border-radius: 999px;
-  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 0px !important;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
 .pill-blue {
-  background: rgba(56, 189, 248, 0.18);
-  color: #7DD3FC;
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: rgba(62, 188, 210, 0.16);
+  color: var(--apple-blue);
+  border-left: 3px solid var(--apple-blue);
 }
 
 .pill-green {
-  background: rgba(52, 211, 153, 0.18);
-  color: #6EE7B7;
-  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(55, 154, 139, 0.18);
+  color: var(--apple-green);
+  border-left: 3px solid var(--apple-green);
 }
 
 .pill-amber {
-  background: rgba(251, 191, 36, 0.18);
-  color: #FDE68A;
-  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(235, 180, 52, 0.18);
+  color: var(--apple-amber);
+  border-left: 3px solid var(--apple-amber);
 }
 
 .pill-red {
-  background: rgba(248, 113, 113, 0.18);
-  color: #FCA5A5;
-  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(227, 18, 11, 0.18);
+  color: var(--apple-red);
+  border-left: 3px solid var(--econ-red);
 }
 
 .pill-indigo {
-  background: rgba(167, 139, 250, 0.18);
-  color: #DDD6FE;
-  border: 1px solid rgba(167, 139, 250, 0.35);
+  background: rgba(93, 165, 218, 0.16);
+  color: var(--apple-indigo);
+  border-left: 3px solid var(--apple-indigo);
 }
 
 .pill-neutral {
-  background: rgba(255, 255, 255, 0.10);
-  color: #E4E4E7;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--bg-card-alt);
+  color: var(--text-secondary);
+  border-left: 3px solid var(--rule-strong);
 }
 
-/* Thermometers */
+/* Thermometers (Stacked Horizontal Bars) */
 .thermometer-row {
   margin-bottom: 18px;
 }
@@ -285,10 +359,10 @@ html, body {
 .thermometer-meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
   font-size: 13.5px;
   color: var(--text-primary);
 }
@@ -296,44 +370,41 @@ html, body {
 .thermometer-track {
   position: relative;
   display: flex;
-  height: 36px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #121214;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  height: 32px;
+  border-radius: 0px !important;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--rule-light);
 }
 
 .thermometer-segment {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12.5px;
+  font-weight: 700;
   color: #FFFFFF;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
   font-family: var(--font-mono);
 }
 
 .seg-blue {
-  background: linear-gradient(90deg, #0284C7, #0A84FF);
+  background-color: #006BA2;
 }
 
 .seg-red {
-  background: linear-gradient(90deg, #DC2626, #EF4444);
+  background-color: #E3120B;
 }
 
 .seg-green {
-  background: linear-gradient(90deg, #059669, #10B981);
+  background-color: #379A8B;
 }
 
 .majority-line {
   position: absolute;
   left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2.5px;
-  background: #FFFFFF;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--text-primary);
   z-index: 5;
 }
 
@@ -341,7 +412,7 @@ html, body {
 .diverging-chart {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
   max-height: 620px;
   overflow-y: auto;
   padding-right: 6px;
@@ -349,10 +420,12 @@ html, body {
 
 .bar-row {
   display: grid;
-  grid-template-columns: 155px 1fr 82px;
+  grid-template-columns: 155px 1fr 84px;
   align-items: center;
   gap: 10px;
   font-size: 12.5px;
+  padding: 2px 0;
+  border-bottom: 1px dotted var(--rule-subtle);
 }
 
 .bar-label {
@@ -364,10 +437,9 @@ html, body {
 
 .bar-track-diverging {
   position: relative;
-  height: 16px;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 5px;
-  overflow: hidden;
+  height: 14px;
+  background: var(--bg-card-alt);
+  border-radius: 0px !important;
 }
 
 .bar-zero-axis {
@@ -376,20 +448,21 @@ html, body {
   top: 0;
   bottom: 0;
   width: 1.5px;
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--rule-strong);
   z-index: 2;
 }
 
 .bar-fill-right {
   height: 100%;
-  background: linear-gradient(90deg, #0A84FF, #38BDF8);
-  border-radius: 0 4px 4px 0;
+  background-color: #3EBCD2;
+}
+body.theme-light .bar-fill-right {
+  background-color: #006BA2;
 }
 
 .bar-fill-left {
   height: 100%;
-  background: linear-gradient(270deg, #EF4444, #F87171);
-  border-radius: 4px 0 0 4px;
+  background-color: #E3120B;
 }
 
 .bar-val {
@@ -399,12 +472,11 @@ html, body {
   font-size: 12px;
 }
 
-/* Tables */
+/* Editorial Tables (Horizontal rules only, zero vertical borders) */
 .table-wrapper {
   overflow-x: auto;
-  border-radius: 14px;
-  border: 1px solid var(--border-glass);
-  background: rgba(24, 24, 27, 0.65);
+  border-top: 1.5px solid var(--rule-strong);
+  border-bottom: 1.5px solid var(--rule-strong);
 }
 
 .glass-table {
@@ -414,25 +486,25 @@ html, body {
 }
 
 .glass-table thead th {
-  background: rgba(39, 39, 42, 0.95);
-  color: #F4F4F5;
+  background: var(--bg-table-head);
+  color: var(--text-primary);
   font-weight: 700;
   text-align: left;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--border-glass);
-  font-size: 11.5px;
+  padding: 10px 12px;
+  border-bottom: 1.5px solid var(--rule-strong);
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .glass-table tbody td {
-  padding: 11px 14px;
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-subtle);
   color: var(--text-primary);
 }
 
 .glass-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--bg-card-alt);
 }
 
 .mono {
@@ -440,32 +512,42 @@ html, body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Selects & Inputs */
+/* Controls & Selects */
 .glass-select {
-  background: #27272A;
+  background: var(--bg-card-alt);
   color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-size: 13px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0px !important;
+  padding: 7px 12px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
 }
 
-.glass-select option {
-  background: #27272A;
-  color: #F5F5F7;
+.theme-toggle-btn {
+  background: var(--bg-card-alt);
+  color: var(--text-primary);
+  border: 1px solid var(--rule-strong);
+  padding: 7px 14px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.theme-toggle-btn:hover {
+  border-color: var(--econ-red);
 }
 
 /* Chart Containers */
 .chart-container-card {
   position: relative;
-  height: 340px;
+  height: 320px;
   width: 100%;
-  background: rgba(24, 24, 27, 0.55);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 14px;
+  background: transparent;
+  padding: 8px 0;
 }
 
 /* Rank Badges */
@@ -473,17 +555,15 @@ html, body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 28px;
-  height: 24px;
+  min-width: 26px;
+  height: 22px;
   padding: 0 6px;
-  border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 11.5px;
-  font-weight: 800;
+  font-weight: 700;
+  background: var(--bg-card-alt);
+  color: var(--text-primary);
+  border-left: 3px solid var(--rule-strong);
 }
-
-.rank-1 { background: rgba(251, 191, 36, 0.25); color: #FDE68A; border: 1px solid rgba(251, 191, 36, 0.5); }
-.rank-2 { background: rgba(228, 228, 231, 0.20); color: #F4F4F5; border: 1px solid rgba(228, 228, 231, 0.4); }
-.rank-3 { background: rgba(249, 115, 22, 0.22); color: #FDBA74; border: 1px solid rgba(249, 115, 22, 0.45); }
-.rank-def { background: rgba(255, 255, 255, 0.08); color: #D4D4D8; }
-.rank-ref { background: rgba(56, 189, 248, 0.22); color: #7DD3FC; border: 1px solid rgba(56, 189, 248, 0.45); }
+.rank-1 { border-left-color: var(--econ-gold); color: var(--apple-amber); }
+.rank-ref { border-left-color: var(--econ-blue); color: var(--apple-blue); }

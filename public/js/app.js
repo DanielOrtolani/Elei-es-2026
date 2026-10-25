@@ -244,17 +244,17 @@ function renderPollsRankingChart() {
           backgroundColor: 'rgba(161, 161, 170, 0.55)',
           borderColor: 'rgba(212, 212, 216, 0.95)',
           borderWidth: 1.5,
-          borderRadius: 6,
+          borderRadius: 0,
           barPercentage: 0.7,
           categoryPercentage: 0.8
         },
         {
           label: 'Erro Placar Método 2 (Com Abstenção RF)',
           data: dataM2,
-          backgroundColor: 'rgba(56, 189, 248, 0.85)',
+          backgroundColor: 'rgba(62, 188, 210, 0.90)',
           borderColor: '#7DD3FC',
           borderWidth: 1.5,
-          borderRadius: 6,
+          borderRadius: 0,
           barPercentage: 0.7,
           categoryPercentage: 0.8
         }
@@ -817,18 +817,18 @@ function renderRfChart() {
         {
           label: 'Importância no Modelo RF (%)',
           data: importances,
-          backgroundColor: 'rgba(56, 189, 248, 0.85)',
+          backgroundColor: 'rgba(62, 188, 210, 0.90)',
           borderColor: '#7DD3FC',
           borderWidth: 1.5,
-          borderRadius: 6
+          borderRadius: 0
         },
         {
           label: 'Coeficiente Marginal SHAP (p.p.)',
           data: shapValues,
-          backgroundColor: 'rgba(167, 139, 250, 0.85)',
+          backgroundColor: 'rgba(227, 18, 11, 0.85)',
           borderColor: '#C4B5FD',
           borderWidth: 1.5,
-          borderRadius: 6
+          borderRadius: 0
         }
       ]
     },
@@ -905,6 +905,7 @@ function renderRfTable() {
 
 // Start application upon DOM load
 document.addEventListener('DOMContentLoaded', initApp);
+
 
 
 
