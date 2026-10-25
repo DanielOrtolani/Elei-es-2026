@@ -241,8 +241,8 @@ function renderPollsRankingChart() {
         {
           label: 'Erro Placar Bruto (29/10/2022)',
           data: dataBruto,
-          backgroundColor: 'rgba(134, 134, 139, 0.45)',
-          borderColor: 'rgba(134, 134, 139, 0.85)',
+          backgroundColor: 'rgba(161, 161, 170, 0.55)',
+          borderColor: 'rgba(212, 212, 216, 0.95)',
           borderWidth: 1.5,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -251,8 +251,8 @@ function renderPollsRankingChart() {
         {
           label: 'Erro Placar Método 2 (Com Abstenção RF)',
           data: dataM2,
-          backgroundColor: 'rgba(0, 113, 227, 0.75)',
-          borderColor: 'rgba(0, 113, 227, 1.0)',
+          backgroundColor: 'rgba(56, 189, 248, 0.85)',
+          borderColor: '#7DD3FC',
           borderWidth: 1.5,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -268,16 +268,16 @@ function renderPollsRankingChart() {
           position: 'top',
           labels: {
             font: { family: '-apple-system, SF Pro Display, sans-serif', size: 12.5, weight: '600' },
-            color: '#1D1D1F',
+            color: '#F5F5F7',
             usePointStyle: true,
             boxWidth: 8
           }
         },
         tooltip: {
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          titleColor: '#1D1D1F',
-          bodyColor: '#48484A',
-          borderColor: 'rgba(0, 0, 0, 0.1)',
+          backgroundColor: 'rgba(24, 24, 27, 0.96)',
+          titleColor: '#F5F5F7',
+          bodyColor: '#E4E4E7',
+          borderColor: 'rgba(255, 255, 255, 0.2)',
           borderWidth: 1,
           padding: 12,
           boxPadding: 6,
@@ -295,23 +295,23 @@ function renderPollsRankingChart() {
         x: {
           grid: { display: false },
           ticks: {
-            color: '#48484A',
+            color: '#E4E4E7',
             font: { family: '-apple-system, SF Pro Text, sans-serif', size: 11.5, weight: '500' }
           }
         },
         y: {
           beginAtZero: true,
           max: 4.5,
-          grid: { color: 'rgba(0, 0, 0, 0.05)' },
+          grid: { color: 'rgba(255, 255, 255, 0.08)' },
           ticks: {
-            color: '#6E6E73',
+            color: '#D4D4D8',
             font: { family: 'SF Mono, monospace', size: 11 },
             callback: value => value.toFixed(1) + ' p.p.'
           },
           title: {
             display: true,
             text: 'Erro Absoluto Frente ao TSE (pontos percentuais)',
-            color: '#86868B',
+            color: '#A1A1AA',
             font: { size: 12, weight: '600' }
           }
         }
@@ -382,8 +382,8 @@ function renderPollsTable() {
   tbody.innerHTML = rows.map(r => {
     const isTse = r.id === 'tse_real';
     const isM1 = r.id === 'metodo1_rf_urnas';
-    const rowBg = isTse ? 'background: rgba(24, 154, 56, 0.08); font-weight: 600;' :
-                  isM1 ? 'background: rgba(0, 113, 227, 0.08); font-weight: 600;' : '';
+    const rowBg = isTse ? 'background: rgba(52, 211, 153, 0.14); font-weight: 600;' :
+                  isM1 ? 'background: rgba(56, 189, 248, 0.14); font-weight: 600;' : '';
 
     const errM2Abs = Number(r.erro_placar_m2) || 0;
     const pillClass = errM2Abs <= 0.95 ? 'pill-green' : (errM2Abs <= 1.80 ? 'pill-blue' : 'pill-amber');
@@ -581,7 +581,7 @@ function renderPolls2026Table() {
   const polls = state.projections.polls2026;
   const rowsHtml = polls.map(p => {
     const isAtlas = p.poll_id === 'atlasintel';
-    const rowStyle = isAtlas ? 'background: rgba(217, 119, 6, 0.06);' : '';
+    const rowStyle = isAtlas ? 'background: rgba(251, 191, 36, 0.12);' : '';
     return `
       <tr style="${rowStyle}">
         <td>
@@ -616,7 +616,7 @@ function renderPolls2026Table() {
 
   // Add Consensus Average Row (5 Eligible Polls)
   rowsHtml.push(`
-    <tr style="background: rgba(24, 154, 56, 0.08); font-weight: 700;">
+    <tr style="background: rgba(52, 211, 153, 0.14); font-weight: 700;">
       <td>
         <div style="font-weight: 800; color: var(--apple-green);">MÉDIA / CONSENSO (5 Institutos Elegíveis)</div>
         <div style="font-size: 11.5px; color: var(--text-secondary);">Apenas pesquisas com recorte por estado e efeito 2ºT Gov</div>
@@ -817,16 +817,16 @@ function renderRfChart() {
         {
           label: 'Importância no Modelo RF (%)',
           data: importances,
-          backgroundColor: 'rgba(0, 113, 227, 0.75)',
-          borderColor: 'rgba(0, 113, 227, 1.0)',
+          backgroundColor: 'rgba(56, 189, 248, 0.85)',
+          borderColor: '#7DD3FC',
           borderWidth: 1.5,
           borderRadius: 6
         },
         {
           label: 'Coeficiente Marginal SHAP (p.p.)',
           data: shapValues,
-          backgroundColor: 'rgba(88, 86, 214, 0.75)',
-          borderColor: 'rgba(88, 86, 214, 1.0)',
+          backgroundColor: 'rgba(167, 139, 250, 0.85)',
+          borderColor: '#C4B5FD',
           borderWidth: 1.5,
           borderRadius: 6
         }
@@ -841,22 +841,22 @@ function renderRfChart() {
           position: 'top',
           labels: {
             font: { family: '-apple-system, SF Pro Display, sans-serif', size: 12.5, weight: '600' },
-            color: '#1D1D1F',
+            color: '#F5F5F7',
             usePointStyle: true
           }
         },
         tooltip: {
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          titleColor: '#1D1D1F',
-          bodyColor: '#48484A',
-          borderColor: 'rgba(0, 0, 0, 0.1)',
+          backgroundColor: 'rgba(24, 24, 27, 0.96)',
+          titleColor: '#F5F5F7',
+          bodyColor: '#E4E4E7',
+          borderColor: 'rgba(255, 255, 255, 0.2)',
           borderWidth: 1,
           padding: 12
         }
       },
       scales: {
         x: {
-          grid: { color: 'rgba(0, 0, 0, 0.05)' },
+          grid: { color: 'rgba(255, 255, 255, 0.08)' },
           ticks: { font: { family: 'SF Mono, monospace', size: 11 } }
         },
         y: {
@@ -905,4 +905,5 @@ function renderRfTable() {
 
 // Start application upon DOM load
 document.addEventListener('DOMContentLoaded', initApp);
+
 
